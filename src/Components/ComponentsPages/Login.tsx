@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import Home from './LandingPage';
 
 interface LoginFormInputs {
   email: string;
@@ -7,16 +8,18 @@ interface LoginFormInputs {
 }
 
 const Login: React.FC = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
 
   const onSubmit = (data: LoginFormInputs) => {
-    // Aquí puedes agregar la lógica para manejar el login
-    // Por ejemplo, llamar a una API para autenticar al usuario
-    console.log(data);
-    // Si el login es exitoso, redirigir a la página principal de citas
+    console.log(data); // Submit form data here (e.g., send to server)
   };
 
   return (
+   
     <div style={{ maxWidth: '400px', margin: '0 auto', padding: '1em', border: '1px solid #ccc', borderRadius: '5px' }}>
       <h2>Login</h2>
       <form onSubmit={handleSubmit(onSubmit)}>

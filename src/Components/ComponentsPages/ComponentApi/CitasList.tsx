@@ -1,60 +1,18 @@
 // components/CitasList.tsx
-import React, { useState } from 'react';
+import React from 'react';
 import useCitas from '../../../Hooks/HooksCitas/useCitas';
-import { Cita } from '../../../Types/Types';
 
 const CitasList: React.FC = () => {
-  const { citas, loading, error, addCita, editCita, removeCita } = useCitas();
-  const [newCita, setNewCita] = useState<Omit<Cita, 'Id'>>({
-    FechaHora: '',
-    Lugar: '',
-    Status: '',
-    UserId: 1,
-    TipoCitaId: 1,
-    SucursalId: 1,
-  });
-  const [editingCita, setEditingCita] = useState<number | null>(null);
+  const { citas, newCita, setNewCita, addCita, editCita, removeCita, editingCita, setEditingCita } = useCitas();
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
-  // Manejar la adición de citas
-  const handleAddCita = () => {
-    addCita(newCita);
-    // Limpiar el formulario después de agregar la cita
-    setNewCita({
-      FechaHora: '',
-      Lugar: '',
-      Status: '',
-      UserId: 1,
-      TipoCitaId: 1,
-      SucursalId: 1,
-    });
-  };
-
-  // Manejar la edición de citas
-  const handleEditCita = (id: number, updatedCita: Partial<Cita>) => {
-    editCita(id, updatedCita);
-    // Limpiar el formulario después de editar la cita
-    setEditingCita(null);
-  };
-
-  // Manejar la eliminación de citas
-  const handleDeleteCita = (id: number) => {
-    removeCita(id);
-  };
+ 
 
   return (
     <div>
       <h1>Lista de Citas</h1>
 
       {/* Formulario para agregar citas */}
-      <form onSubmit={(e) => { e.preventDefault(); handleAddCita(); }}>
+      <form onSubmit={(e) => { e.preventDefault(); addCita(); }}>
         <div>
           <label>Fecha y Hora</label>
           <input type="datetime-local" value={newCita.FechaHora} onChange={(e) => setNewCita({ ...newCita, FechaHora: e.target.value })} />
@@ -80,14 +38,14 @@ const CitasList: React.FC = () => {
             {/* Botón para editar cita */}
             <button onClick={() => setEditingCita(cita.Id)}>Edit</button>
             {/* Botón para eliminar cita */}
-            <button onClick={() => handleDeleteCita(cita.Id)}>Delete</button>
+            <button onClick={() => removeCita(cita.Id)}>Delete</button>
           </li>
         ))}
       </ul>
 
       {/* Formulario para editar citas */}
       {editingCita !== null && (
-        <form onSubmit={(e) => { e.preventDefault(); handleEditCita(editingCita!, newCita); }}>
+        <form onSubmit={(e) => { e.preventDefault(); editCita(editingCita); }}>
           <div>
             <label>Fecha y Hora</label>
             <input type="datetime-local" value={newCita.FechaHora} onChange={(e) => setNewCita({ ...newCita, FechaHora: e.target.value })} />

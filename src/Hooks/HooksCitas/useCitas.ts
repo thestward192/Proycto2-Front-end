@@ -7,6 +7,15 @@ const useCitas = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [newCita, setNewCita] = useState<Omit<Cita, 'Id'>>({
+    FechaHora: '',
+    Lugar: '',
+    Status: '',
+    UserId: 1,
+    TipoCitaId: 1,
+    SucursalId: 1,
+  });
+  const [editingCita, setEditingCita] = useState<number | null>(null);
 
   useEffect(() => {
     const loadCitas = async () => {
@@ -25,21 +34,38 @@ const useCitas = () => {
     loadCitas();
   }, []);
 
-  const addCita = async (newCita: Omit<Cita, 'Id'>) => {
+  const addCita = async () => {
     try {
       const createdCita = await createCita(newCita);
       setCitas((prevCitas) => [...prevCitas, createdCita]);
+      setNewCita({
+        FechaHora: '',
+        Lugar: '',
+        Status: '',
+        UserId: 1,
+        TipoCitaId: 1,
+        SucursalId: 1,
+      });
     } catch (err) {
       setError(err.message);
     }
   };
 
-  const editCita = async (id: number, updatedCita: Partial<Cita>) => {
+  const editCita = async (id: number) => {
     try {
-      const updated = await updateCita(id, updatedCita);
+      const updated = await updateCita(id, newCita);
       setCitas((prevCitas) =>
         prevCitas.map((cita) => (cita.Id === id ? updated : cita))
       );
+      setEditingCita(null);
+      setNewCita({
+        FechaHora: '',
+        Lugar: '',
+        Status: '',
+        UserId: 1,
+        TipoCitaId: 1,
+        SucursalId: 1,
+      });
     } catch (err) {
       setError(err.message);
     }
@@ -54,7 +80,7 @@ const useCitas = () => {
     }
   };
 
-  return { citas, loading, error, addCita, editCita, removeCita };
+  return { citas, loading, error, newCita, setNewCita, addCita, editCita, removeCita, editingCita, setEditingCita };
 };
 
 export default useCitas;

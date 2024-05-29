@@ -81,7 +81,7 @@ const Register: React.FC = () => {
         </div>
       </form>
       <div>
-        <p>¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a></p>
+        <p>¿Ya tienes una cuenta? <a href="/">Inicia sesión</a></p>
       </div>
     </div>
   );

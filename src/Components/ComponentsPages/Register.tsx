@@ -89,5 +89,7 @@ const Register: React.FC = () => {
 
 export default Register;
 
-
+/*"https://www.consalud.es/uploads/s1/11/91/33/9/profesional-de-enfermeria-foto-freepik.jpeg",
+    "https://www.consalud.es/uploads/s1/13/33/90/6/foto-enfermeros-foto-freepik.jpeg",
+    "https://salud-sociales.udla.cl/wp-content/uploads/sites/70/2019/10/tecnico-en-nivel-superior-en-enfermeria.jpg"*/
 

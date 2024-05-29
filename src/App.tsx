@@ -3,6 +3,7 @@ import Register from "./Components/ComponentsPages/Register"
 import Login from "./Components/ComponentsPages/Login"
 import LandingPage from "./Components/ComponentsPages/LandingPage"
 
+
 const App = () => {
   return (
      <BrowserRouter>
@@ -11,7 +12,7 @@ const App = () => {
           <Route path="/login" element = {<Login/>}/>
           <Route path="/Register" element = {<Register/>}/>
           <Route path="/" element = {<LandingPage/>}/>
-
+          
       </Routes>
     </BrowserRouter>
   )

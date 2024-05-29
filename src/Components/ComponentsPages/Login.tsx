@@ -46,10 +46,10 @@ const Login: React.FC = () => {
       </form>
       <div>
         <p>¿No tienes una cuenta? <a href="/register">Regístrate</a></p>
+        <p>Entrar al Home <a href="/Home">Home</a></p>
       </div>
     </div>
   );
 };
 
 export default Login;
-

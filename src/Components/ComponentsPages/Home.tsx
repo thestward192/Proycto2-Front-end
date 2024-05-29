@@ -1,12 +1,18 @@
+
+
+
+import AddCitaForm from './ComponentApi/AgregarCita'
+import CitaList from './ComponentApi/CitaList'
+
 const Home = () => {
-    return (
-       <>
-       <h1>Home</h1>
-       </>
-  
-    )
-  }
-  
-  export default Home
+  return (
+    <div>
 
+<AddCitaForm />
+<CitaList/>
+     
+    </div>
+  )
+}
 
+export default Home

@@ -3,7 +3,7 @@ import { Cita } from "../Types/Types";
 const API_URL = 'https://localhost:7284/api/Cita';
 
 export const getCitas = async (): Promise<Cita[]> => {
-  const response = await fetch(API_URL); // La URL ya es completa, no necesitas concatenar 'Cita'
+  const response = await fetch(API_URL);
   if (!response.ok) {
     throw new Error('Error fetching citas');
   }
@@ -20,7 +20,8 @@ export const addCita = async (newCita: Cita) => {
   });
 
   if (!response.ok) {
-    throw new Error('Error adding cita');
+    const errorDetail = await response.text(); // Leer el cuerpo de la respuesta de error
+    throw new Error(`Error adding cita: ${response.status} ${response.statusText} - ${errorDetail}`);
   }
 
   return response.json();

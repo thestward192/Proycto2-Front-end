@@ -22,7 +22,6 @@ export interface TipoCita {
 }
 
 // Models/Sucursal.ts
-// Models/Sucursal.ts
 export interface Sucursal {
 sucursalId: number;
 nombre: string;

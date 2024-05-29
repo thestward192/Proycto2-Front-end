@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getCitas } from '../../../Services/ApiCita';
-import { getSucursales } from '../../../Services/ApiCita';
 import { Cita, Sucursal } from '../../../Types/Types';
+import { getSucursales } from '../../../Services/ApiEntities';
 
 
 const CitaList: React.FC = () => {

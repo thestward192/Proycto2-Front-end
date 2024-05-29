@@ -1,17 +1,16 @@
 import {  useState } from 'react';
-import { addCita as sendCita } from '../Services/ApiCita';
-import { Cita } from '../Types/Types';
+import { getCitas } from '../Services/ApiCita';
 
 export const useAddCita = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const addCita = async (newCita: Cita) => {
+  const GetCita = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      await sendCita(newCita);
+      await getCitas();
       setLoading(false);
     } catch (error) {
       setError('Error adding cita');
@@ -19,6 +18,6 @@ export const useAddCita = () => {
     }
   };
 
-  return { addCita, loading, error };
+  return { GetCita, loading, error };
 };
 ﻿

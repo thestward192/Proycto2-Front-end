@@ -1,11 +1,9 @@
-
-
-import { Cita, Sucursal } from "../Types/Types";
+import { Cita } from "../Types/Types";
 
 const API_URL = 'https://localhost:7284/api/Cita';
 
 export const getCitas = async (): Promise<Cita[]> => {
-  const response = await fetch(API_URL + 'Cita');
+  const response = await fetch(API_URL); // La URL ya es completa, no necesitas concatenar 'Cita'
   if (!response.ok) {
     throw new Error('Error fetching citas');
   }
@@ -13,7 +11,7 @@ export const getCitas = async (): Promise<Cita[]> => {
 };
 
 export const addCita = async (newCita: Cita) => {
-  const response = await fetch('https://localhost:7284/api/Cita', {
+  const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -25,13 +23,5 @@ export const addCita = async (newCita: Cita) => {
     throw new Error('Error adding cita');
   }
 
-  return response.json();
-};
-
-export const getSucursales = async (): Promise<Sucursal[]> => {
-  const response = await fetch('https://localhost:7284/api/Cita');
-  if (!response.ok) {
-    throw new Error('Error fetching sucursales');
-  }
   return response.json();
 };

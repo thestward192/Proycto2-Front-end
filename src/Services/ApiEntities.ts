@@ -1,34 +1,8 @@
 
-import { Cita, Role, Sucursal, TipoCita, User } from "../Types/Types";
-
-const API_URL = 'https://localhost:7284/api/';
-
-export const getCitas = async (): Promise<Cita[]> => {
-  const response = await fetch('https://localhost:7284/api/Cita');
-  if (!response.ok) {
-    throw new Error('Error fetching citas');
-  }
-  return response.json();
-};
-
-export const addCita = async (newCita: Cita) => {
-  const response = await fetch(API_URL + 'Cita', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(newCita)
-  });
-
-  if (!response.ok) {
-    throw new Error('Error adding cita');
-  }
-
-  return response.json();
-};
+import { Role, Sucursal, TipoCita, User } from "../Types/Types";
 
 export const getSucursales = async (): Promise<Sucursal[]> => {
-  const response = await fetch(API_URL + 'Sucursal');
+  const response = await fetch('https://localhost:7284/api/Sucursal');
   if (!response.ok) {
     throw new Error('Error fetching sucursales');
   }
@@ -36,7 +10,7 @@ export const getSucursales = async (): Promise<Sucursal[]> => {
 };
 
 export const getRoles = async (): Promise<Role[]> => {
-  const response = await fetch(API_URL + 'Role');
+  const response = await fetch('https://localhost:7284/api/Role');
   if (!response.ok) {
     throw new Error('Error fetching roles');
   }
@@ -44,7 +18,7 @@ export const getRoles = async (): Promise<Role[]> => {
 };
 
 export const getTiposCita = async (): Promise<TipoCita[]> => {
-  const response = await fetch(API_URL + 'TipoCita');
+  const response = await fetch('https://localhost:7284/api/TipoCita');
   if (!response.ok) {
     throw new Error('Error fetching tiposCita');
   }
@@ -52,7 +26,7 @@ export const getTiposCita = async (): Promise<TipoCita[]> => {
 };
 
 export const getUsers = async (): Promise<User[]> => {
-  const response = await fetch(API_URL + 'User');
+  const response = await fetch('https://localhost:7284/api/User');
   if (!response.ok) {
     throw new Error('Error fetching users');
   }

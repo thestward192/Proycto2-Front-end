@@ -41,7 +41,7 @@ const Login: React.FC = () => {
   // Función para obtener la información del usuario utilizando el token
   const fetchUserInfo = async (token: string): Promise<User> => {
     try {
-      const response = await fetch( 'https://localhost:7284/api/User/{id}', {
+      const response = await fetch( 'https://localhost:7284/api/User', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${token}`,

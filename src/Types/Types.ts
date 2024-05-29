@@ -16,9 +16,8 @@ export interface User {
 }
 
 export interface TipoCita {
-  id: number;
+  tipoCitaid: number;
   nombre: string;
-  citas: string[];
 }
 
 // Models/Sucursal.ts

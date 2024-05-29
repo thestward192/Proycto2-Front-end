@@ -39,60 +39,63 @@ const AddCitaForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md">
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Fecha y Hora:</label>
-        <input
-          type="datetime-local"
-          name="fechaHora"
-          value={newCita.fechaHora}
-          onChange={handleChange}
-          required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Status:</label>
-        <input
-          type="text"
-          name="status"
-          value={newCita.status}
-          onChange={handleChange}
-          required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Tipo Cita ID:</label>
-        <input
-          type="number"
-          name="tipoCitaId"
-          value={newCita.tipoCitaId}
-          onChange={handleChange}
-          required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2">Sucursal ID:</label>
-        <input
-          type="number"
-          name="sucursalId"
-          value={newCita.sucursalId}
-          onChange={handleChange}
-          required
-          className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        Agregar Cita
-      </button>
-      {loading && <div className="mt-4 text-blue-500">Loading...</div>}
-      {error && <div className="mt-4 text-red-500">{error}</div>}
-    </form>
+    <div className="max-w-md mx-auto p-6 bg-white shadow-md rounded-md mt-8">
+      <h1 className="text-2xl font-bold mb-4 text-center">Agregar Cita</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Fecha y Hora:</label>
+          <input
+            type="datetime-local"
+            name="fechaHora"
+            value={newCita.fechaHora}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Status:</label>
+          <input
+            type="text"
+            name="status"
+            value={newCita.status}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Tipo Cita ID:</label>
+          <input
+            type="number"
+            name="tipoCitaId"
+            value={newCita.tipoCitaId}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 font-bold mb-2">Sucursal ID:</label>
+          <input
+            type="number"
+            name="sucursalId"
+            value={newCita.sucursalId}
+            onChange={handleChange}
+            required
+            className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Agregar Cita
+        </button>
+        {loading && <div className="mt-4 text-blue-500">Loading...</div>}
+        {error && <div className="mt-4 text-red-500">{error}</div>}
+      </form>
+    </div>
   );
 };
 

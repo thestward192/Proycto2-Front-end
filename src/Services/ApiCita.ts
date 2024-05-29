@@ -26,3 +26,17 @@ export const addCita = async (newCita: Cita) => {
 
   return response.json();
 };
+
+// Services/ApiCita.ts
+// Services/ApiCita.ts
+export const cancelarCita = async (citaId: number) => {
+  const response = await fetch(`https://localhost:7284/api/Cita/cancelar/${citaId}`, {
+    method: 'PATCH',
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to cancel cita');
+  }
+};
+

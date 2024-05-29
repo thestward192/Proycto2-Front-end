@@ -4,7 +4,7 @@ import { Cita, Role, Sucursal, TipoCita, User } from "../Types/Types";
 const API_URL = 'https://localhost:7284/api/';
 
 export const getCitas = async (): Promise<Cita[]> => {
-  const response = await fetch(API_URL + 'Cita');
+  const response = await fetch('https://localhost:7284/api/Cita');
   if (!response.ok) {
     throw new Error('Error fetching citas');
   }

@@ -1,10 +1,39 @@
+export interface Role {
+  roleId: number;
+  nombre: string;
+  users: string[];
+}
+
+export interface User {
+  id: number;
+  nombre: string;
+  email: string;
+  telefono: string;
+  password: string;
+  roleId: number;
+  role: Role;
+  citas: string[];
+}
+
+export interface TipoCita {
+  id: number;
+  nombre: string;
+  citas: string[];
+}
+
+// Models/Sucursal.ts
+// Models/Sucursal.ts
+export interface Sucursal {
+sucursalId: number;
+nombre: string;
+}
+
+// Models/Cita.ts
 export interface Cita {
-    Id: number;
-    FechaHora: string;
-    Lugar: string;
-    Status: string;
-    UserId: number;
-    TipoCitaId: number;
-    SucursalId: number;
-  }
-  
+citaId: number;
+fechaHora: string;
+status: string;
+userId: number;
+tipoCitaId: number;
+sucursalId: number;
+}

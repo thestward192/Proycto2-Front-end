@@ -3,7 +3,6 @@ import { getCitas } from '../../../Services/ApiCita';
 import { Cita, Sucursal } from '../../../Types/Types';
 import { getSucursales } from '../../../Services/ApiEntities';
 
-
 const CitaList: React.FC = () => {
   const [citas, setCitas] = useState<Cita[]>([]);
   const [sucursales, setSucursales] = useState<Sucursal[]>([]);
@@ -36,13 +35,15 @@ const CitaList: React.FC = () => {
   return (
     <div>
       <h2>Lista de Citas</h2>
-      <ul>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {citas.map(cita => (
-          <li key={cita.citaId}>
-            {new Date(cita.fechaHora).toLocaleString()} - {getSucursalNombre(cita.sucursalId)} - {cita.status}
-          </li>
+          <div key={cita.citaId} className="border rounded-md p-4">
+            <p>Fecha y Hora: {new Date(cita.fechaHora).toLocaleString()}</p>
+            <p>Sucursal: {getSucursalNombre(cita.sucursalId)}</p>
+            <p>Status: {cita.status}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

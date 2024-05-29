@@ -7,10 +7,9 @@ import CitaList from './ComponentApi/CitaList'
 const Home = () => {
   return (
     <div>
-
-<AddCitaForm />
 <CitaList/>
-     
+<AddCitaForm />
+
     </div>
   )
 }

@@ -1,95 +1,85 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
+import { registerUser } from '../../Services/ApiEntities';
+import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
-interface RegisterFormInputs {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  confirmPassword: string;
+const RegisterForm = () => {
+    const [nombre, setNombre] = useState('');
+    const [email, setEmail] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const Navigate = useNavigate();
+
+    const handleRegister = async (e : any) => {
+        e.preventDefault();
+
+        try {
+            const responseMessage = await registerUser({ nombre, email, telefono, password });
+            setMessage(responseMessage);
+        } catch (error) {
+            setMessage(error.message);
+        }
+    };
+
+const handleCancel = () => {
+  Navigate('/');
 }
 
-const Register: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<RegisterFormInputs>();
-  const password = watch('password');
-
-  const onSubmit = (data: RegisterFormInputs) => {
-    // Aquí puedes agregar la lógica para manejar el registro
-    // Por ejemplo, llamar a una API para registrar al usuario
-    console.log(data);
-    // Si el registro es exitoso, redirigir a la página de login
-  };
-
-  return (
-    <div style={{ maxWidth: '400px', margin: '0 auto', padding: '1em', border: '1px solid #ccc', borderRadius: '5px' }}>
-      <h2>Registro</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="name">Nombre:</label>
-          <input
-            id="name"
-            {...register('name', { required: 'Este campo es requerido' })}
-          />
-          {errors.name && <p style={{ color: 'red' }}>{errors.name.message}</p>}
+    return (
+      <>
+        <Navbar/>
+        <div className="max-w-md mx-auto mt-8 p-4 border rounded shadow-md bg-white">
+            <h1 className="text-2xl font-semibold text-gray-700 mb-4">Registro de Usuario</h1>
+            <form onSubmit={handleRegister}>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Nombre:</label>
+                    <input
+                        type="text"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Teléfono:</label>
+                    <input
+                        type="text"
+                        value={telefono}
+                        onChange={(e) => setTelefono(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Contraseña:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                        required
+                    />
+                </div>
+                <div className="flex space-x-2">
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Registrar</button>
+                    <button type="button" onClick={handleCancel} className="w-full bg-red-500 text-white py-2 rounded">Cancelar</button>
+                </div>
+            </form>
+            {message && <p className="mt-4 text-red-500">{message}</p>}
         </div>
-
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            type="email"
-            {...register('email', { required: 'Este campo es requerido', pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, message: 'Email no válido' } })}
-          />
-          {errors.email && <p style={{ color: 'red' }}>{errors.email.message}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="phone">Teléfono:</label>
-          <input
-            id="phone"
-            type="tel"
-            {...register('phone', { required: 'Este campo es requerido', pattern: { value: /^[0-9]{10}$/, message: 'Teléfono no válido, deben ser 10 dígitos' } })}
-          />
-          {errors.phone && <p style={{ color: 'red' }}>{errors.phone.message}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="password">Contraseña:</label>
-          <input
-            id="password"
-            type="password"
-            {...register('password', { required: 'Este campo es requerido', minLength: { value: 6, message: 'La contraseña debe tener al menos 6 caracteres' } })}
-          />
-          {errors.password && <p style={{ color: 'red' }}>{errors.password.message}</p>}
-        </div>
-
-        <div>
-          <label htmlFor="confirmPassword">Confirmar Contraseña:</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            {...register('confirmPassword', { 
-              required: 'Este campo es requerido', 
-              validate: value => value === password || 'Las contraseñas no coinciden' 
-            })}
-          />
-          {errors.confirmPassword && <p style={{ color: 'red' }}>{errors.confirmPassword.message}</p>}
-        </div>
-
-        <div>
-          <button type="submit">Registrar</button>
-        </div>
-      </form>
-      <div>
-        <p>¿Ya tienes una cuenta? <a href="/">Inicia sesión</a></p>
-      </div>
-    </div>
-  );
+      </>
+    );
 };
 
-export default Register;
-
-/*"https://www.consalud.es/uploads/s1/11/91/33/9/profesional-de-enfermeria-foto-freepik.jpeg",
-    "https://www.consalud.es/uploads/s1/13/33/90/6/foto-enfermeros-foto-freepik.jpeg",
-    "https://salud-sociales.udla.cl/wp-content/uploads/sites/70/2019/10/tecnico-en-nivel-superior-en-enfermeria.jpg"*/
-
+export default RegisterForm;

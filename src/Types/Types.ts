@@ -35,3 +35,7 @@ userId: number;
 tipoCitaId: number;
 sucursalId: number;
 }
+
+export interface JwtDecode {
+  (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT
+}

@@ -6,6 +6,7 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Profile from './Components/ComponentsPages/Profile';
 import Home from './Components/ComponentsPages/Home';
 import LandingPage from './Components/ComponentsPages/LandingPage';
+import Register from './Components/ComponentsPages/Register';
 
 
 const App: React.FC = () => {
@@ -14,13 +15,10 @@ const App: React.FC = () => {
       <Router>
         <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path = "/home" element = {<Home/>} />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          } />
+
         </Routes>
       </Router>
     </AuthProvider>

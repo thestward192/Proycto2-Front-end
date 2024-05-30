@@ -1,131 +1,85 @@
 import React, { useState } from 'react';
+import { loginUser } from '../../Services/ApiEntities';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
-import { User } from '../../Types/Types';
+import Navbar from './Navbar';
 
-const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { login } = useAuth();
-  const navigate = useNavigate();
+const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [message, setMessage] = useState('');
+    const Navigate = useNavigate();
 
-  const performLogin = async () => {
-    try {
-      const response = await fetch('https://localhost:7284/api/User/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    const handleLogin = async (e : any) => {
+        e.preventDefault();
 
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-
-      const token = await response.text();
-      
-      // Obtener la información del usuario después de iniciar sesión
-      const user = await fetchUserInfo(token);
-      
-      // Llamar a la función login para almacenar el token y la información del usuario
-      login(token, user);
-      
-      // Redirigir al usuario a la página de inicio
-      navigate('/home');
-    } catch (error) {
-      console.error('Error logging in:', error);
-    }
-  };
-
-  // Función para obtener la información del usuario utilizando el token
-  const fetchUserInfo = async (token: string): Promise<User> => {
-    try {
-      const response = await fetch( 'https://localhost:7284/api/User', {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+        try {
+            const token = await loginUser({ email, password });
+            localStorage.setItem('token', token); // Guarda el token en el almacenamiento local
+            setMessage('Login exitoso');
+            Navigate('/home')
+        } catch (error) {
+            setMessage(error.message);
         }
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to fetch user information');
-      }
-  
-      const userData = await response.json();
-      // Mapear los datos de usuario del backend a tu interfaz User
-      const user: User = {
-        id: userData.id,
-        nombre: userData.nombre,
-        email: userData.email,
-        telefono: userData.telefono,
-        password: userData.password,
-        roleId: userData.roleId,
-        role: userData.role,
-        citas: userData.citas,
-      };
-  
-      return user;
-    } catch (error) {
-      throw new Error('Error fetching user information: ' + error.message);
-    }
-  };
-  
-  // Función para manejar el envío del formulario de inicio de sesión
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    await performLogin();
-  };
+    };
 
-  // Función para manejar el clic en el botón de cancelar
-  const handleCancel = () => {
-    navigate('/');
-  };
+    const handleCancel = () => {
+      Navigate('/')
+    };
 
-  return (
-    <div>
-      <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <span className="font-semibold text-xl tracking-tight">Clinica San Martin</span>
-          <Link to='/' className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 ml-4">
-            Home
+    return (
+      <>
+          <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
+      <div className="flex items-center flex-shrink-0 text-white mr-6">
+        <img className="h-12 w-auto mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" /> {/* Aquí se muestra la imagen del logo */}
+        <span className="font-semibold text-xl tracking-tight">Clinica San Martin</span>
+      </div>
+      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div className="text-sm lg:flex-grow">
+          <Link to="/about" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4">
+            About
           </Link>
+          {/* Añade más enlaces aquí si es necesario */}
         </div>
-        <div className="flex space-x-4">
-          <Link to="/registrarse" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200">
-            Registrarse
-          </Link>
+        <Link 
+          to='/register'
+          className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200"
+        >
+          Registrarse 
+        </Link>
+      </div>
+    </nav>
+        <div className="max-w-md mx-auto mt-8 p-4 border rounded shadow-md bg-white">
+            <h1 className="text-2xl font-semibold text-gray-700 mb-4">Iniciar Sesión</h1>
+            <form onSubmit={handleLogin}>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Email:</label>
+                    <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label className="block text-gray-700">Contraseña:</label>
+                    <input
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className="w-full px-3 py-2 border rounded"
+                        required
+                    />
+                </div>
+                <div className="flex space-x-2">
+                    <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Login</button>
+                    <button type="button" onClick={handleCancel} className="w-full bg-red-500 text-white py-2 rounded">Cancelar</button>
+                </div>
+            </form>
+            {message && <p className="mt-4 text-red-500">{message}</p>}
         </div>
-      </nav>
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 p-4 border rounded shadow-md">
-        <div className="mb-4">
-          <label className="block text-gray-700">Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 border rounded"
-            required
-          />
-        </div>
-        <div>
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded">Login</button>
-          <button onClick={handleCancel} type="button" className="w-full bg-red-500 text-white py-2 rounded">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  );
+      </>
+    );
 };
 
 export default Login;

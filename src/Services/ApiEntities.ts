@@ -25,10 +25,48 @@ export const getTiposCita = async (): Promise<TipoCita[]> => {
   return response.json();
 };
 
-export const getUsers = async (): Promise<User[]> => {
-  const response = await fetch('https://localhost:7284/api/User');
-  if (!response.ok) {
-    throw new Error('Error fetching users');
+export const registerUser = async (userData: { nombre: string; email: string; telefono: string; password: string }) => {
+  try {
+      const response = await fetch('https://localhost:7284/api/User/register', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Error al registrar usuario');
+      }
+
+      const data = await response.text();
+      return data;
+  } catch (error) {
+      throw error;
   }
-  return response.json();
+};
+
+const API_URL = 'https://localhost:7284/api/User'
+
+export const loginUser = async (userData: { email: string; password: string }) => {
+  try {
+      const response = await fetch(`${API_URL}/login`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userData)
+      });
+
+      if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || 'Error al iniciar sesión');
+      }
+
+      const token = await response.text();
+      return token;
+  } catch (error) {
+      throw error;
+  }
 };

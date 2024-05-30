@@ -1,24 +1,30 @@
-import { BrowserRouter , Routes, Route} from "react-router-dom"
-import Register from "./Components/ComponentsPages/Register"
-import Login from "./Components/ComponentsPages/Login"
-import LandingPage from "./Components/ComponentsPages/LandingPage"
-import Home from "./Components/ComponentsPages/Home"
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthProvider } from './Components/ComponentsPages/AuthContext';
+import Login from './Components/ComponentsPages/Login';
+import ProtectedRoute from './Components/ProtectedRoute';
+import Profile from './Components/ComponentsPages/Profile';
+import Home from './Components/ComponentsPages/Home';
+import LandingPage from './Components/ComponentsPages/LandingPage';
 
 
-const App = () => {
+const App: React.FC = () => {
   return (
-     <BrowserRouter>
-      <Routes>
+    <AuthProvider>
+      <Router>
+        <Routes>
+        <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path = "/home" element = {<Home/>} />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+};
 
-          <Route path="/login" element = {<Login/>}/>
-          <Route path="/Register" element = {<Register/>}/>
-          <Route path="/" element = {<LandingPage/>}/>
-          <Route path="/home" element =  {<Home/>}/>
-          
-          
-      </Routes>
-    </BrowserRouter>
-  )
-}
-
-export default App
+export default App;

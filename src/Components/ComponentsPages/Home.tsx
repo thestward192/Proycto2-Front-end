@@ -1,7 +1,7 @@
 import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AddCitaForm from './ComponentApi/AgregarCita';
+import AgregarCitaForm from './ComponentApi/AgregarCita';
 
 
 const Home = () => {
@@ -46,7 +46,7 @@ const Home = () => {
         }
 
         
-    }, [userData.id]); // Añade userData.id a la lista de dependencias
+    }, [userData.id]); 
 
 
     return (
@@ -54,7 +54,7 @@ const Home = () => {
   <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
     <div className="flex items-center flex-shrink-0 text-white mr-6">
       <img className="h-12 w-auto mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" />
-      <span className="font-semibold text-xl tracking-tight">Clinica San Martin</span>
+      <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
     </div>
     <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
       <div className="text-sm lg:flex-grow"></div>
@@ -67,8 +67,7 @@ const Home = () => {
         </div>
         <Link
           to='/login'
-          className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200"
-        >
+          className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200">
           Cerrar sesion
         </Link>
       </div>
@@ -82,7 +81,7 @@ const Home = () => {
             <div key={item.citaId} className="bg-white border rounded-lg shadow-md p-4 cursor-pointer transition-transform transform hover:scale-105">
                 <p className="text-lg font-bold mb-2">Cita #{item.citaId}</p>
                 <p><span className="font-bold">Fecha:</span> {item.fechaHora}</p>
-                <p><span className="font-bold">Hora:</span> {item.status}</p>
+                <p><span className="font-bold">Estado:</span> {item.status}</p>
                 <p><span className="font-bold">Sucursal:</span> {item.sucursalId}</p>
                 <p><span className="font-bold">Tipo Cita:</span> {item.tipoCitaId}</p>
                 <div className="mt-4 flex justify-between">
@@ -95,7 +94,7 @@ const Home = () => {
 </div>
 
     <div className="w-1/4 p-4">
-      <AddCitaForm />
+    <AgregarCitaForm userId={userData.id} />
     </div>
   </div>
 </>

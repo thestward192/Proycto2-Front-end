@@ -39,10 +39,10 @@ const UseUser = () => {
             try {
                 const decodedToken = jwtDecode(token);
                 setUserData({
-                  id: decodedToken.nameid,
-                  email: decodedToken.email,
-                  telefono: decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/mobilephone'],
-                  nombre: decodedToken.unique_name
+                  id: decodedToken.UserId,
+                  email: decodedToken.Email,
+                  telefono: decodedToken.Telefono,
+                                    nombre: decodedToken.Nombre
               });              
               
                

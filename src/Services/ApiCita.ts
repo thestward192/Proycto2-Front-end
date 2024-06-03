@@ -29,14 +29,23 @@ export const addCita = async (newCita: Cita) => {
 
 
 // Services/ApiCita.ts
-export const cancelarCita = async (citaId: number) => {
+export const cancelarCita = async (citaId : any) => {
   const response = await fetch(`https://localhost:7080/api/Cita/cancelar/${citaId}`, {
     method: 'PATCH',
   });
 
   if (!response.ok) {
-    const errorData = await response.json();
-    throw new Error(errorData.message || 'Failed to cancel cita');
+    // Intenta analizar la respuesta como JSON
+    let errorMessage = 'Failed to cancel cita';
+    try {
+      const errorData = await response.json();
+      errorMessage = errorData.message || errorMessage;
+    } catch (error) {
+      // Si la respuesta no es JSON, usa el texto plano
+      errorMessage = await response.text();
+    }
+    throw new Error(errorMessage);
   }
 };
+
 

@@ -2,7 +2,7 @@
 import { Role, Sucursal, TipoCita, User } from "../Types/Types";
 
 export const getSucursales = async (): Promise<Sucursal[]> => {
-  const response = await fetch('https://localhost:7284/api/Sucursal');
+  const response = await fetch('https://localhost:7080/api/Sucursal');
   if (!response.ok) {
     throw new Error('Error fetching sucursales');
   }
@@ -10,7 +10,7 @@ export const getSucursales = async (): Promise<Sucursal[]> => {
 };
 
 export const getRoles = async (): Promise<Role[]> => {
-  const response = await fetch('https://localhost:7284/api/Role');
+  const response = await fetch('https://localhost:7080/api/Role');
   if (!response.ok) {
     throw new Error('Error fetching roles');
   }
@@ -18,7 +18,7 @@ export const getRoles = async (): Promise<Role[]> => {
 };
 
 export const getTiposCita = async (): Promise<TipoCita[]> => {
-  const response = await fetch('https://localhost:7284/api/TipoCita');
+  const response = await fetch('https://localhost:7080/api/TipoCita');
   if (!response.ok) {
     throw new Error('Error fetching tiposCita');
   }
@@ -27,7 +27,7 @@ export const getTiposCita = async (): Promise<TipoCita[]> => {
 
 export const registerUser = async (userData: { nombre: string; email: string; telefono: string; password: string }) => {
   try {
-      const response = await fetch('https://localhost:7284/api/User/register', {
+      const response = await fetch('https://localhost:7080/api/User/register', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -47,26 +47,26 @@ export const registerUser = async (userData: { nombre: string; email: string; te
   }
 };
 
-const API_URL = 'https://localhost:7284/api/User'
+
 
 export const loginUser = async (userData: { email: string; password: string }) => {
   try {
-      const response = await fetch(`${API_URL}/login`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(userData)
-      });
+    const response = await fetch('https://localhost:7080/api/User/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(userData)
+    });
 
-      if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || 'Error al iniciar sesión');
-      }
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Error al iniciar sesión');
+    }
 
-      const token = await response.text();
-      return token;
+    const token = await response.text();
+    return token;
   } catch (error) {
-      throw error;
+    throw error;
   }
 };

@@ -1,30 +1,8 @@
-import React, { useState } from 'react';
-import { loginUser } from '../../Services/ApiEntities';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import { Link } from 'react-router-dom';
+import UseUser from '../../Hooks/UseUser';
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const Navigate = useNavigate();
-
-    const handleLogin = async (e : any) => {
-        e.preventDefault();
-
-        try {
-            const token = await loginUser({ email, password });
-            localStorage.setItem('token', token); // Guarda el token en el almacenamiento local
-            setMessage('Login exitoso');
-            Navigate('/home')
-        } catch (error) {
-            setMessage(error.message);
-        }
-    };
-
-    const handleCancel = () => {
-      Navigate('/')
-    };
+const {email,setEmail,setPassword, message, password, handleLogin, handleCancel} = UseUser();
 
     return (
       <>

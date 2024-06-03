@@ -1,6 +1,6 @@
 import { Cita } from "../Types/Types";
 
-const API_URL = 'https://localhost:7284/api/Cita';
+const API_URL = 'https://localhost:7080/api/Cita';
 
 export const getCitas = async (): Promise<Cita[]> => {
   const response = await fetch(API_URL);
@@ -30,7 +30,7 @@ export const addCita = async (newCita: Cita) => {
 
 // Services/ApiCita.ts
 export const cancelarCita = async (citaId: number) => {
-  const response = await fetch(`https://localhost:7284/api/Cita/cancelar/${citaId}`, {
+  const response = await fetch(`https://localhost:7080/api/Cita/cancelar/${citaId}`, {
     method: 'PATCH',
   });
 

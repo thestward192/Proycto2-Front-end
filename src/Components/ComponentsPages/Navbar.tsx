@@ -8,7 +8,7 @@ const Navbar: React.FC = () => {
     <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
         <img className="h-12 w-auto mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" /> {/* Aquí se muestra la imagen del logo */}
-        <span className="font-semibold text-xl tracking-tight">Clinica San Martin</span>
+        <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">

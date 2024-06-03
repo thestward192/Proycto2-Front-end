@@ -1,34 +1,13 @@
-import React, { useState } from 'react';
-import { registerUser } from '../../Services/ApiEntities';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
+import UseUser from '../../Hooks/UseUser';
+import Navbar from '../ComponentsPages/Navbar';
 
 const RegisterForm = () => {
-    const [nombre, setNombre] = useState('');
-    const [email, setEmail] = useState('');
-    const [telefono, setTelefono] = useState('');
-    const [password, setPassword] = useState('');
-    const [message, setMessage] = useState('');
-    const Navigate = useNavigate();
-
-    const handleRegister = async (e : any) => {
-        e.preventDefault();
-
-        try {
-            const responseMessage = await registerUser({ nombre, email, telefono, password });
-            setMessage(responseMessage);
-        } catch (error) {
-            setMessage(error.message);
-        }
-    };
-
-const handleCancel = () => {
-  Navigate('/');
-}
+    const {handleRegister, nombre, telefono, email, password, message, setEmail, setPassword, setNombre, setTelefono, handleCancel} = UseUser();
+  
 
     return (
       <>
-        <Navbar/>
+      <Navbar/>
         <div className="max-w-md mx-auto mt-8 p-4 border rounded shadow-md bg-white">
             <h1 className="text-2xl font-semibold text-gray-700 mb-4">Registro de Usuario</h1>
             <form onSubmit={handleRegister}>

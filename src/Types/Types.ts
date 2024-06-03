@@ -36,6 +36,13 @@ tipoCitaId: number;
 sucursalId: number;
 }
 
+export interface RegisterFormInputs {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}
 export interface JwtDecode {
   (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT
 }

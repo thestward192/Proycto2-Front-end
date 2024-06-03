@@ -25,7 +25,7 @@ const LandingPage = () => {
   }, [images.length]); 
 
   return (
-    <div className={`container mx-auto px-0 ${darkMode ? 'dark' : ''}`}>
+    <div className={`container mx-auto px-4 ${darkMode ? 'dark' : ''}`}>
       <header className="flex items-center justify-between fixed top-0 z-50 w-full bg-white dark:bg-gray-900 py-8 px-8 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-black dark:text-white">Choco Clinica</h1>
         <nav className="flex space-x-8">

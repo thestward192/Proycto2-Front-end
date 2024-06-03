@@ -33,7 +33,9 @@ fechaHora: string;
 status: string;
 userId: number;
 tipoCitaId: number;
+tipoCitaNombre: string;
 sucursalId: number;
+sucursalNombre: string;
 }
 
 export interface RegisterFormInputs {

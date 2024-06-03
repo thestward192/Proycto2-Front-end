@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { loginUser, registerUser } from '../Services/ApiEntities';
+import { getSucursalId, getTipoCitaId, loginUser, registerUser } from '../Services/ApiEntities';
 import { jwtDecode } from 'jwt-decode';
 import { RegisterFormInputs } from '../Types/Types';
 
@@ -9,9 +9,10 @@ const UseUser = () => {
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [userData, setUserData] = useState({});
-    const [citas, setCitas] = useState(null);
+    const [citas, setCitas] = useState([]);
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
+  const [citasConNombres, setCitasConNombres] = useState([]);
     const Navigate = useNavigate();
 
     const handleLogin = async (e : any) => {
@@ -44,8 +45,7 @@ const UseUser = () => {
                   nombre: decodedToken.unique_name
               });              
               
-                console.log(decodedToken)
-
+               
                 if (userData.id) {
                     fetch(`https://localhost:7080/api/Cita/user/${userData.id}`)
 
@@ -57,7 +57,7 @@ const UseUser = () => {
                     })
                     .then(data => {
                         setCitas(data);
-                        console.log(userData)
+                        
                     })
                     .catch(error => {
                         console.error('Error al obtener citas del usuario:', error);
@@ -82,8 +82,32 @@ const UseUser = () => {
         }
     };
 
+    
+  useEffect(() => {
+    // Función para obtener los nombres de la sucursal y el tipo de cita
+    const fetchCitasConNombres = async () => {
+        try {
+            const citasPromises = citas.map(async (cita : any) => {
+                const tipoCita = await getTipoCitaId(cita.tipoCitaId);
+                const sucursal = await getSucursalId(cita.sucursalId);
+                return {
+                    ...cita,
+                    tipoCitaNombre: tipoCita?.nombre || '',
+                    sucursalNombre: sucursal?.nombre || ''
+                };
+            });
+            const citasConNombresResult = await Promise.all(citasPromises);
+            setCitasConNombres(citasConNombresResult);
+        } catch (error) {
+            console.error('Error al obtener los nombres de la sucursal y el tipo de cita:', error);
+        }
+    };
+
+    fetchCitasConNombres();
+}, [citas]);
+
   return {
-    email, setEmail, setPassword, password, message, handleLogin, handleCancel, citas, userData, handleRegister, telefono, nombre, setNombre, setTelefono
+    email, setEmail, setPassword, password, message, handleLogin, handleCancel, citas, userData, handleRegister, telefono, nombre, setNombre, setTelefono, citasConNombres
   }
 }
 

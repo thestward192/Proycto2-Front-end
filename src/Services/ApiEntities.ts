@@ -9,6 +9,39 @@ export const getSucursales = async (): Promise<Sucursal[]> => {
   return response.json();
 };
 
+// Simulación de una función que realiza una solicitud HTTP para obtener los detalles de un tipo de cita por su ID
+export const getTipoCitaId = async (tipoCitaId: number): Promise<TipoCita | null> => {
+  try {
+    // Realiza la solicitud HTTP al backend para obtener los detalles del tipo de cita con el ID proporcionado
+    const response = await fetch(`https://localhost:7080/api/TipoCita/${tipoCitaId}`); // Ajusta la URL según tu backend
+    if (!response.ok) {
+      throw new Error('Error al obtener los detalles del tipo de cita');
+    }
+    const data = await response.json();
+    return data as TipoCita; // Devuelve los detalles del tipo de cita
+  } catch (error) {
+    console.error('Error en la función getTipoCita:', error);
+    return null;
+  }
+};
+
+// Simulación de una función que realiza una solicitud HTTP para obtener los detalles de una sucursal por su ID
+export const getSucursalId = async (sucursalId: number): Promise<Sucursal | null> => {
+  try {
+    // Realiza la solicitud HTTP al backend para obtener los detalles de la sucursal con el ID proporcionado
+    const response = await fetch(`https://localhost:7080/api/Sucursal/${sucursalId}`); // Ajusta la URL según tu backend
+    if (!response.ok) {
+      throw new Error('Error al obtener los detalles de la sucursal');
+    }
+    const data = await response.json();
+    return data as Sucursal; // Devuelve los detalles de la sucursal
+  } catch (error) {
+    console.error('Error en la función getSucursal:', error);
+    return null;
+  }
+};
+
+
 export const getRoles = async (): Promise<Role[]> => {
   const response = await fetch('https://localhost:7080/api/Role');
   if (!response.ok) {

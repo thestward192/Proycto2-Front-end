@@ -16,9 +16,8 @@ export interface User {
 }
 
 export interface TipoCita {
-  id: number;
+  tipoCitaid: number;
   nombre: string;
-  citas: string[];
 }
 
 // Models/Sucursal.ts
@@ -34,5 +33,18 @@ fechaHora: string;
 status: string;
 userId: number;
 tipoCitaId: number;
+tipoCitaNombre: string;
 sucursalId: number;
+sucursalNombre: string;
+}
+
+export interface RegisterFormInputs {
+  name: string;
+  email: string;
+  phone: string;
+  password: string;
+  confirmPassword: string;
+}
+export interface JwtDecode {
+  (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT
 }

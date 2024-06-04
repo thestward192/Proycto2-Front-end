@@ -12,7 +12,6 @@ const UseUser = () => {
     const [citas, setCitas] = useState([]);
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
-  const [citasConNombres, setCitasConNombres] = useState([]);
     const Navigate = useNavigate();
 
     const handleLogin = async (e : any) => {
@@ -32,44 +31,26 @@ const UseUser = () => {
       Navigate('/')
     };
 
+    
     useEffect(() => {
         const token = localStorage.getItem('token');
-
         if (token) {
             try {
                 const decodedToken = jwtDecode(token);
                 setUserData({
-                  id: decodedToken.UserId,
-                  email: decodedToken.Email,
-                  telefono: decodedToken.Telefono,
-                                    nombre: decodedToken.Nombre
-              });              
-              
-               
-                if (userData.id) {
-                    fetch(`https://localhost:7080/api/Cita/user/${userData.id}`)
-
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Error al obtener citas del usuario');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        setCitas(data);
-                        
-                    })
-                    .catch(error => {
-                        console.error('Error al obtener citas del usuario:', error);
-                    });
-                }
+                    id: decodedToken.Id,
+                    email: decodedToken.Email,
+                    telefono: decodedToken.Telefono,
+                    nombre: decodedToken.Nombre,
+                    roleId: decodedToken.RoleId, // Agrega el roleId al estado del usuario
+                });
+                console.log(userData);
             } catch (error) {
                 console.error('Error al decodificar el token:', error);
             }
         }
-
-        
-    }, [userData.id]); 
+    }, []);
+    
 
     const handleRegister = async (e : any) => {
         e.preventDefault();
@@ -83,31 +64,23 @@ const UseUser = () => {
     };
 
     
-  useEffect(() => {
-    // Función para obtener los nombres de la sucursal y el tipo de cita
-    const fetchCitasConNombres = async () => {
-        try {
-            const citasPromises = citas.map(async (cita : any) => {
-                const tipoCita = await getTipoCitaId(cita.tipoCitaId);
-                const sucursal = await getSucursalId(cita.sucursalId);
-                return {
-                    ...cita,
-                    tipoCitaNombre: tipoCita?.nombre || '',
-                    sucursalNombre: sucursal?.nombre || ''
-                };
-            });
-            const citasConNombresResult = await Promise.all(citasPromises);
-            setCitasConNombres(citasConNombresResult);
-        } catch (error) {
-            console.error('Error al obtener los nombres de la sucursal y el tipo de cita:', error);
-        }
-    };
-
-    fetchCitasConNombres();
-}, [citas]);
+  
 
   return {
-    email, setEmail, setPassword, password, message, handleLogin, handleCancel, citas, userData, handleRegister, telefono, nombre, setNombre, setTelefono, citasConNombres
+    email, 
+    setEmail, 
+    setPassword, 
+    password, 
+    message, 
+    handleLogin, 
+    handleCancel, 
+    citas, 
+    userData, 
+    handleRegister, 
+    telefono,
+    nombre, 
+    setNombre,
+     setTelefono
   }
 }
 

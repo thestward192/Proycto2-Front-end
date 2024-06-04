@@ -1,5 +1,5 @@
 import ModalComponent from './modalCita';
-import { useCita } from '../../../Hooks/UseCita';
+import { useCita } from '../../Hooks/UseCita';
 import ErrorModal from './modalDeleteCita';
 
 const CitaList = () => {

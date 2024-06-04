@@ -1,7 +1,7 @@
 // AgregarCitaForm.tsx
 import React, { useState } from 'react';
-import { Cita } from '../../../Types/Types';
-import { addCita } from '../../../Services/ApiCita';
+import { Cita } from '../../Types/Types';
+import { addCita } from '../../Services/ApiCita';
 
 
 interface AgregarCitaFormProps {

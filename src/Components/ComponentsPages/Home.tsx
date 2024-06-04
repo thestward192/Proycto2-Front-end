@@ -1,8 +1,8 @@
 import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import AgregarCitaForm from './ComponentsCita/AgregarCita';
-import CitaList from './ComponentsCita/CitaList';
+import AgregarCitaForm from '../ComponentsCita/AgregarCita';
+import CitaList from '../ComponentsCita/CitaList';
 import UseUser from '../../Hooks/UseUser';
 
 

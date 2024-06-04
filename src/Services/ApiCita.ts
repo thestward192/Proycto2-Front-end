@@ -18,8 +18,7 @@ export const obtenerCitasPorUsuario = async (userId : any) => {
   return await response.json();
 };
 
-// ApiCita.js
-
+// ApiCita.ts
 export const agregarCita = async (cita: any, userId: number) => {
   try {
     const response = await fetch(`https://localhost:7080/api/Cita`, {
@@ -37,7 +36,7 @@ export const agregarCita = async (cita: any, userId: number) => {
     }
 
     return await response.json();
-  } catch (error) {
+  } catch (error: any) {
     throw new Error(error.message || 'Failed to add cita');
   }
 };

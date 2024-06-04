@@ -35,7 +35,7 @@ const Home = () => {
   <div className="flex">
 <CitaList/>
     <div className="w-1/4 p-4">
-    {/*<AgregarCitaForm userId={userData.id} />*/}
+   <AgregarCitaForm userId={userData.id} />
     </div>
   </div>
 </>

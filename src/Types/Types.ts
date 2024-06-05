@@ -1,3 +1,6 @@
+import { ReactElement } from 'react';
+import { RouteProps } from 'react-router-dom';
+
 export interface Role {
   roleId: number;
   nombre: string;
@@ -49,6 +52,13 @@ export interface RegisterFormInputs {
 export interface AgregarCitaFormProps {
   userId: number;
 }
+
+export interface ProtectedRouteProps {
+  element: ReactElement;
+  allowedRoles: number[];
+}
+
+
 
 export interface JwtDecode {
   (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT

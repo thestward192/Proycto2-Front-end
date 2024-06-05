@@ -84,10 +84,16 @@ export const actualizarCita = async (cita : any) => {
 
 export const eliminarCita = async (citaId: number) => {
   try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Token de autenticación no encontrado');
+    }
+
     const response = await fetch(`https://localhost:7080/api/Cita/${citaId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`, // Incluye el token de autenticación en el encabezado
       },
     });
 
@@ -97,8 +103,10 @@ export const eliminarCita = async (citaId: number) => {
     }
 
     console.log("Cita eliminada correctamente");
-  } catch (error) {
+  } catch (error: any) {
+    console.error('Error al eliminar la cita:', error.message);
     throw new Error(error.message || 'Failed to delete cita');
   }
 };
+
 

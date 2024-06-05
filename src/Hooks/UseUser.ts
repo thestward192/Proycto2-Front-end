@@ -52,25 +52,18 @@ const UseUser = () => {
     }, []);
     
 
-    const handleRegister = async (e) => {
+    const handleRegister = async (e : any) => {
         e.preventDefault();
-    
+
         try {
             const responseMessage = await registerUser({ nombre, email, telefono, password });
             setMessage(responseMessage);
-    
-            // Retrasar la navegación durante 2 segundos
-            setTimeout(() => {
-                Navigate('/login');
-            }, 2000);
+            Navigate('/login')
         } catch (error) {
             setMessage(error.message);
         }
-    };
 
     
-  
-
   return {
     email, 
     setEmail, 

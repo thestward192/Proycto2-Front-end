@@ -27,7 +27,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles }
     if (!allowedRoles.includes(Number(userRoleId))) {
         // Si el usuario no tiene el rol permitido, mostramos la página de error solo si intenta acceder a la página de administración
         if (location.pathname === '/admin') {
-            return <Navigate to="/404" state={{ from: location }} replace />;
+            return <Navigate to="/Inautorizado" state={{ from: location }} replace />;
         }
         // Para cualquier otra página no permitida, redirigimos al inicio o a una página de error general
         return <Navigate to="/admin" state={{ from: location }} replace />;

@@ -41,7 +41,6 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 shadow-md rounded-lg">
       <h2 className="text-xl font-bold mb-4">Agregar Cita</h2>
-      {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
       <div className="mb-4">
         <label className="block text-gray-700">Fecha y Hora:</label>
@@ -84,6 +83,7 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
             </option>
           ))}
         </select>
+        {error && <p className="text-red-500">{error}</p>}
       </div>
       <button
         type="submit"

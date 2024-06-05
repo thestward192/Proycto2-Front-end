@@ -37,7 +37,7 @@ const App: React.FC = () => {
                           /> 
                     }
                     />
-                    <Route path="/404" element={<NotFoundPage />} />
+                    <Route path="/Inautorizado" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </AuthProvider>

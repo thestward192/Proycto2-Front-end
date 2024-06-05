@@ -1,4 +1,4 @@
-import { Cita } from "../Types/Types";
+import { Cita, CitaM } from "../Types/Types";
 
 const API_URL = 'https://localhost:7080/api/Cita';
 
@@ -63,22 +63,27 @@ export const cancelarCita = async (citaId : any) => {
 };
 
 // Services/ApiCita.js
-export const actualizarCita = async (cita : any) => {
-  const response = await fetch(`https://localhost:7080/api/Cita`, {
+export const modificarCita = async (cita: CitaM): Promise<void> => {
+const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local o de donde lo tengas guardado
+try {
+  const response = await fetch(`https://localhost:7080/api/Cita/${cita.citaId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}` // Incluye el token en los headers
     },
-    body: JSON.stringify(cita),
+    body: JSON.stringify(cita)
   });
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || 'Failed to update cita');
+    throw new Error(errorData.message || 'Error al modificar la cita');
   }
-
-  return await response.json();
+} catch (error) {
+  throw new Error('Error al modificar la cita');
+}
 };
+
 
 // ApiCita.ts
 

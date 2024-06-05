@@ -1,46 +1,41 @@
-// AgregarCitaForm.tsx
 import React, { useState } from 'react';
-import { AgregarCitaFormProps, Cita, Sucursal, TipoCita } from '../../Types/Types';
-import { agregarCita } from '../../Services/ApiCita';
-import useAddCita from '../../Hooks/useAddCita';
+import { CitaM, ModificarCitaListFormProps } from '../../Types/Types';
+import { modificarCita } from '../../Services/ApiCita';
+import useEditCita from '../../Hooks/Modificarcitas';
 
+const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onClose }) => {
+  const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useEditCita();
 
-const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
-
-  const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useAddCita();
-
-  const [fechaHora, setFechaHora] = useState('');
+  const [fechaHora, setFechaHora] = useState(cita.fechaHora);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
   
-    const newCita: Cita = {
-      citaId: 0,
-      fechaHora: new Date(fechaHora),
-      status: 'ACTIVA',
+    const updatedCita: CitaM = {
+      ...cita,
+      fechaHora: new Date(fechaHora).toISOString(), 
       tipoCitaId: tipoCitaId,
       sucursalId: sucursalId
     };
   
     try {
-      await agregarCita(newCita, userId);
-      setSuccess('Cita agregada exitosamente');
+      await modificarCita(updatedCita);
+      setSuccess('Cita modificada exitosamente');
       setError(null);
-      
-      // Recargar la página después de agregar la cita
+      onClose();
       window.location.reload();
     } catch (err: any) {
-      setError('Error al agregar la cita');
+      setError('Error al modificar la cita');
       setSuccess(null);
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-4 shadow-md rounded-lg">
-      <h2 className="text-xl font-bold mb-4">Agregar Cita</h2>
+      <h2 className="text-xl font-bold mb-4">Modificar Cita</h2>
+      {error && <p className="text-red-500">{error}</p>}
       {success && <p className="text-green-500">{success}</p>}
       <div className="mb-4">
         <label className="block text-gray-700">Fecha y Hora:</label>
@@ -83,16 +78,24 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
             </option>
           ))}
         </select>
-        {error && <p className="text-red-500">{error}</p>}
       </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Agregar Cita
-      </button>
+      <div className="flex justify-between">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Modificar Cita
+        </button>
+        <button
+          type="button"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+          onClick={onClose}
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 };
 
-export default AgregarCitaForm;
+export default ModificarCitaListForm;

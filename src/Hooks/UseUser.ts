@@ -44,7 +44,7 @@ const UseUser = () => {
                     nombre: decodedToken.Nombre,
                     roleId: decodedToken.RoleId, // Agrega el roleId al estado del usuario
                 });
-                console.log(userData);
+              
             } catch (error) {
                 console.error('Error al decodificar el token:', error);
             }

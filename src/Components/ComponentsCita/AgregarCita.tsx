@@ -1,47 +1,18 @@
 // AgregarCitaForm.tsx
-import React, { useEffect, useState } from 'react';
-import { Cita } from '../../Types/Types';
-import { agregarCita, getTipoCitaId, getSucursalId } from '../../Services/ApiCita';
+import React, { useState } from 'react';
+import { AgregarCitaFormProps, Cita, Sucursal, TipoCita } from '../../Types/Types';
+import { agregarCita } from '../../Services/ApiCita';
+import useAddCita from '../../Hooks/useAddCita';
 
-interface AgregarCitaFormProps {
-  userId: number;
-}
-
-interface TipoCita {
-  tipoCitaId: number;
-  nombre: string;
-}
-
-interface Sucursal {
-  sucursalId: number;
-  nombre: string;
-}
 
 const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
+
+  const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useAddCita();
+
   const [fechaHora, setFechaHora] = useState('');
-  const [tipoCitaId, setTipoCitaId] = useState(0);
-  const [sucursalId, setSucursalId] = useState(0);
-  const [tiposCita, setTiposCita] = useState<TipoCita[]>([]);
-  const [sucursales, setSucursales] = useState<Sucursal[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  useEffect(() => {
-    const fetchTiposCita = async () => {
-      const response = await fetch('https://localhost:7080/api/TipoCita');
-      const data = await response.json();
-      setTiposCita(data);
-    };
-
-    const fetchSucursales = async () => {
-      const response = await fetch('https://localhost:7080/api/Sucursal');
-      const data = await response.json();
-      setSucursales(data);
-    };
-
-    fetchTiposCita();
-    fetchSucursales();
-  }, []);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();

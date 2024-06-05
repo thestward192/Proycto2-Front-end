@@ -16,7 +16,7 @@ export interface User {
 }
 
 export interface TipoCita {
-  tipoCitaid: number;
+  tipoCitaId: number;
   nombre: string;
 }
 
@@ -45,6 +45,11 @@ export interface RegisterFormInputs {
   password: string;
   confirmPassword: string;
 }
+
+export interface AgregarCitaFormProps {
+  userId: number;
+}
+
 export interface JwtDecode {
   (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT
 }

@@ -1,13 +1,22 @@
 import { jwtDecode } from 'jwt-decode';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import AgregarCitaForm from '../ComponentsCita/AgregarCita';
 import CitaList from '../ComponentsCita/CitaList';
 import UseUser from '../../Hooks/UseUser';
+import { useCita } from '../../Hooks/UseCita';
 
 
 const Home = () => {
   const {userData} = UseUser();
+  const Navigate = useNavigate();
+  const handleLogout = () => {
+    // Eliminar el token del localStorage
+    localStorage.removeItem('token');
+
+    // Redirigir al usuario a la página de login
+    Navigate('/login');
+  };
     return (
       <>
   <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
@@ -24,11 +33,12 @@ const Home = () => {
           <p>Email: {userData.email}</p>
           <p>Telefono: {userData.telefono}</p>
         </div>
-        <Link
-          to='/login'
-          className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200">
-          Cerrar sesion
-        </Link>
+        <button
+            onClick={handleLogout}
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200"
+          >
+            Cerrar sesión
+          </button>
       </div>
     </div>
   </nav>

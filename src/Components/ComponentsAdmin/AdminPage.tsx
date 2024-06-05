@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCita } from '../../Hooks/UseCita';
 import useAdmin from '../../Hooks/useAdmin';
 import UseUser from '../../Hooks/UseUser';
@@ -7,6 +7,14 @@ const AdminPage = () => {
   const { citas } = useAdmin();
   const {handleDeleteCita} = useCita();
   const {userData} = UseUser();
+  const Navigate = useNavigate();
+  const handleLogout = () => {
+    // Eliminar el token del localStorage
+    localStorage.removeItem('token');
+
+    // Redirigir al usuario a la página de login
+    Navigate('/login');
+  };
 
   return (
     <div className="p-4">
@@ -24,11 +32,12 @@ const AdminPage = () => {
           <p>Email: {userData.email}</p>
           <p>Telefono: {userData.telefono}</p>
         </div>
-        <Link
-          to='/login'
-          className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200">
-          Cerrar sesion
-        </Link>
+        <button
+            onClick={handleLogout}
+            className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200"
+          >
+            Cerrar sesión
+          </button>
       </div>
     </div>
   </nav>

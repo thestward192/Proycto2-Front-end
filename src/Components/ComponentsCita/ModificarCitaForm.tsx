@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { CitaM, modificarCita } from '../../Hooks/Modificarcitas';
-
-interface ModificarCitaListFormProps {
-  cita: CitaM; // Corrige el tipo de cita para que coincida con CitaM
-  onClose: () => void; // Añade la función onClose para cerrar el formulario después de modificar la cita
-}
+import { CitaM, ModificarCitaListFormProps } from '../../Types/Types';
+import { modificarCita } from '../../Services/ApiCita';
+import useEditCita from '../../Hooks/Modificarcitas';
 
 const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onClose }) => { // Pasa onClose como prop
+  const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useEditCita();
+
   const [fechaHora, setFechaHora] = useState(cita.fechaHora);
-  const [tipoCitaId, setTipoCitaId] = useState(cita.tipoCitaId);
-  const [sucursalId, setSucursalId] = useState(cita.sucursalId);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
@@ -18,7 +15,7 @@ const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onC
   
     const updatedCita: CitaM = {
       ...cita,
-      fechaHora: new Date(fechaHora).toISOString(), // Convierte la fecha a formato ISO
+      fechaHora: new Date(fechaHora).toISOString(), 
       tipoCitaId: tipoCitaId,
       sucursalId: sucursalId
     };
@@ -52,23 +49,35 @@ const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onC
       </div>
       <div className="mb-4">
         <label className="block text-gray-700">Tipo de Cita:</label>
-        <input
-          type="number"
+        <select
           value={tipoCitaId}
           onChange={(e) => setTipoCitaId(Number(e.target.value))}
           className="w-full px-3 py-2 border rounded"
           required
-        />
+        >
+          <option value="">Seleccione un tipo de cita</option>
+          {tiposCita.map((tipo) => (
+            <option key={tipo.tipoCitaId} value={tipo.tipoCitaId}>
+              {tipo.nombre}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="mb-4">
         <label className="block text-gray-700">Sucursal:</label>
-        <input
-          type="number"
+        <select
           value={sucursalId}
           onChange={(e) => setSucursalId(Number(e.target.value))}
           className="w-full px-3 py-2 border rounded"
           required
-        />
+        >
+          <option value="">Seleccione una sucursal</option>
+          {sucursales.map((sucursal) => (
+            <option key={sucursal.sucursalId} value={sucursal.sucursalId}>
+              {sucursal.nombre}
+            </option>
+          ))}
+        </select>
       </div>
       <button
         type="submit"

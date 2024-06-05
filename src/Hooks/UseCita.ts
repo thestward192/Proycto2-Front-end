@@ -1,5 +1,5 @@
 import {  useEffect, useState } from 'react';
-import { actualizarCita, agregarCita, cancelarCita, eliminarCita, getCitas, obtenerCitasPorUsuario } from '../Services/ApiCita';
+import {  agregarCita, cancelarCita, eliminarCita, getCitas, obtenerCitasPorUsuario } from '../Services/ApiCita';
 import UseUser from './UseUser';
 
 export const useCita = () => {
@@ -74,18 +74,6 @@ export const useCita = () => {
     setEditModalIsOpen(true);
 };
 
-const handleUpdateCita = async (updatedCita : any) => {
-    try {
-        await actualizarCita(updatedCita);
-        setMessage(`Cita #${updatedCita.citaId} actualizada exitosamente`);
-        setEditModalIsOpen(false);
-        window.location.reload();
-    } catch (error) {
-        console.error('Error al actualizar la cita:', error);
-        setMessage(`Error al actualizar la cita: ${error.message}`);
-        setEditModalIsOpen(true);
-    }
-};
 
 const handleDeleteCita = async (citaId: any) => {
   try {
@@ -107,7 +95,6 @@ const handleDeleteCita = async (citaId: any) => {
     handleCancelarCita,
      citas,
      message, 
-     handleUpdateCita,
      handleEditCita,
      selectedCita, 
      setMessage,

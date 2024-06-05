@@ -58,8 +58,19 @@ export interface ProtectedRouteProps {
   allowedRoles: number[];
 }
 
-
+export interface CitaM {
+  citaId: number;
+  fechaHora: string;
+  userId: number;
+  tipoCitaId: number;
+  sucursalId: number;
+}
 
 export interface JwtDecode {
   (token: string): any; // Aquí debes ajustar el tipo según la estructura de tus tokens JWT
+}
+
+export interface ModificarCitaListFormProps {
+  cita: CitaM; // Corrige el tipo de cita para que coincida con CitaM
+  onClose: () => void; // Añade la función onClose para cerrar el formulario después de modificar la cita
 }

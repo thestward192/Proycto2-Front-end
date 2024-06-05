@@ -91,6 +91,7 @@ const handleDeleteCita = async (citaId: any) => {
   try {
       await eliminarCita(citaId);
       console.log("Cita eliminada correctamente");
+      window.location.reload();
   } catch (error) {
       setErrorMessage(error.message || 'Error al eliminar la cita');
       setErrorModalIsOpen(true);

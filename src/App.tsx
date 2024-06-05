@@ -6,7 +6,7 @@ import LandingPage from './Components/ComponentsPages/LandingPage';
 import Register from './Components/ComponentsUser/Register';
 import Home from './Components/ComponentsPages/Home';
 import ProtectedRoute from './Components/ComponentsPages/ProtectedRoute';
-import AdminPage from './Components/ComponentsPages/AdminPage';
+import AdminPage from './Components/ComponentsAdmin/AdminPage';
 import NotFoundPage from './Components/ComponentsPages/NotFoundPage';
 
 

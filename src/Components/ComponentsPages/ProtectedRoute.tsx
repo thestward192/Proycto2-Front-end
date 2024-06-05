@@ -10,7 +10,6 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles }
 
     if (token) {
         try {
-            console.log(token);
             const decodedToken: any = jwtDecode(token);
                         isAuthorized = !!decodedToken;
             userRoleId = decodedToken.RoleId;

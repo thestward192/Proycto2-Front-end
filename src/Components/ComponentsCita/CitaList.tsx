@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ModalComponent from './modalCita';
 import { useCita } from '../../Hooks/UseCita';
 import ErrorModal from './modalDeleteCita';
 import ModificarCitaForm from './ModificarCitaForm'; // Importa el componente de modificación de cita
-import { CitaM } from '../../Hooks/Modificarcitas';
+import { CitaM } from '../../Types/Types';
 
 const CitaList = () => {
     const { citas, loading, closeModal, handleCancelarCita, modalIsOpen, message, handleDeleteCita, errorMessage, errorModalIsOpen, setErrorModalIsOpen } = useCita();

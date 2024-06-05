@@ -3,7 +3,7 @@ import { CitaM, ModificarCitaListFormProps } from '../../Types/Types';
 import { modificarCita } from '../../Services/ApiCita';
 import useEditCita from '../../Hooks/Modificarcitas';
 
-const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onClose }) => { // Pasa onClose como prop
+const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onClose }) => {
   const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useEditCita();
 
   const [fechaHora, setFechaHora] = useState(cita.fechaHora);
@@ -79,12 +79,21 @@ const ModificarCitaListForm: React.FC<ModificarCitaListFormProps> = ({ cita, onC
           ))}
         </select>
       </div>
-      <button
-        type="submit"
-        className="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
-      >
-        Modificar Cita
-      </button>
+      <div className="flex justify-between">
+        <button
+          type="submit"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Modificar Cita
+        </button>
+        <button
+          type="button"
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded"
+          onClick={onClose}
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 };

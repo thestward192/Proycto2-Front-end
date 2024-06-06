@@ -44,7 +44,7 @@ export const useCita = () => {
           setCitas(citas.filter((cita) => cita.citaId !== citaId)); // Actualiza la lista de citas localmente
       } catch (error) {
           console.error('Error al cancelar la cita:', error);
-          setMessage(`Error al cancelar la cita: ${error.message}`);
+          setMessage(`Error al cancelar la cita: Las citas se deben de cancelar con 24 horas de antelación`);
           setModalIsOpen(true);
       }
   };

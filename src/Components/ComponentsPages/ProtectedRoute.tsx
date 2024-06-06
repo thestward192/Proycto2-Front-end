@@ -20,8 +20,8 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles }
 
     const location = useLocation();
 
-    if (!isAuthorized) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+    if (!token && location.pathname === '/admin') {
+        return <Navigate to="/Inautorizado" state={{ from: location }} replace />;
     }
 
     if (!allowedRoles.includes(Number(userRoleId))) {

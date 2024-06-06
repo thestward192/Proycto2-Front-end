@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getSucursalId, getTipoCitaId, loginUser, registerUser } from '../Services/ApiEntities';
 import { jwtDecode } from 'jwt-decode';
@@ -62,7 +62,7 @@ const UseUser = () => {
         } catch (error) {
             setMessage(error.message);
         }
-
+    }
     
   return {
     email, 

@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { AgregarCitaFormProps, Cita } from '../../Types/Types';
+import { AgregarCitaFormProps, Cita, FormValues } from '../../Types/Types';
 import { agregarCita } from '../../Services/ApiCita';
 import useAddCita from '../../Hooks/useAddCita';
-
-interface FormValues {
-  fechaHora: string;
-  tipoCitaId: number;
-  sucursalId: number;
-}
 
 const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
   const { tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales } = useAddCita();

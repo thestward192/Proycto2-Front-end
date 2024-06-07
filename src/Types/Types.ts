@@ -74,3 +74,9 @@ export interface ModificarCitaListFormProps {
   cita: CitaM; // Corrige el tipo de cita para que coincida con CitaM
   onClose: () => void; // Añade la función onClose para cerrar el formulario después de modificar la cita
 }
+
+export interface FormValues {
+  fechaHora: string;
+  tipoCitaId: number;
+  sucursalId: number;
+}

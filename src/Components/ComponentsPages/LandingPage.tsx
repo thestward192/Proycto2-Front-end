@@ -29,6 +29,16 @@ const LandingPage = () => {
     }
   };
 
+  const docsSectionRef = useRef<HTMLDivElement | null>(null); // Corregimos el tipo de referencia
+
+  const handleScrollToDoc = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    event.preventDefault();
+    const docsSection = docsSectionRef.current;
+    if (docsSection) {
+      docsSection.scrollIntoView({ behavior: 'smooth', block: 'start' }); // Ajustamos el desplazamiento más lento y desde el inicio
+    }
+  };
+
   return (
     <div className="relative">
       <header className="absolute top-0 left-0 right-0 z-50 bg-gray-200 py-8 px-8 rounded-lg shadow-md flex items-center justify-between">
@@ -38,9 +48,9 @@ const LandingPage = () => {
         </div>
         <nav className="flex space-x-8">
           <a href="#servicios" className="text-gray-900 font-bold hover:text-gray-400" onClick={handleScrollToServices}>Servicios</a> {/* Cambiamos el texto a "Servicios" */}
-          <a href="#doctores" className="text-gray-900 font-bold hover:text-gray-400">Doctores</a> {/* Agregamos el enlace para la sección de Doctores */}
+          <a href="#doctores" className="text-gray-900 font-bold hover:text-gray-400" onClick={handleScrollToDoc}>Doctores</a> {/* Agregamos el enlace para la sección de Doctores */}
           <button type="button" className="text-gray-900 font-bold bg-gray-400 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-            <a href="/login">Iniciar Sesión</a>
+            <a href="/login">Agregar cita</a>
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
@@ -89,7 +99,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      <section id="doctores" className="bg-gray-200 text-gray-900 py-12 px-8 flex justify-center items-center rounded-lg shadow-md">
+      <section id="doctores" className="bg-gray-200 text-gray-900 py-12 px-8 flex justify-center items-center rounded-lg shadow-md" ref={docsSectionRef}>
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold mb-8 text-center">Nuestros Doctores</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,6 +136,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
+      
 
       <section className="bg-gray-200 text-gray-900 py-12 px-8 flex justify-center items-center rounded-lg shadow-md">
         <p className="text-lg font-semibold">Con nosotros, tu salud está en buenas manos.</p>

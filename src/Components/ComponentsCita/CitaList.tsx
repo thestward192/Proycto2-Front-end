@@ -18,11 +18,11 @@ const CitaList = () => {
     return (
         <div className="w-3/4 p-4">
             {loading && <p>Is loading...</p>}
-            <h2 className="text-2xl font-bold mb-4">Tus citas</h2>
+            <h2 className="text-2xl font-bold mb-4 text-white">Tus citas</h2>
             <ModalComponent modalIsOpen={modalIsOpen} closeModal={closeModal} message={message} />
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {citas.length === 0 && !loading ? (
-                    <p>No hay citas.</p>
+                    <p className='text-white' >No hay citas.</p>
                 ) : (
                     citas.map((item) => (
                         <div key={item.citaId} className="bg-white border rounded-lg shadow-md p-4 cursor-pointer transition-transform transform hover:scale-105">

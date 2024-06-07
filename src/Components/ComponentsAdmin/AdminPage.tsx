@@ -14,16 +14,19 @@ const AdminPage = () => {
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <nav className="flex items-center justify-between flex-wrap bg-blue-500 p-6">
-        <div className="flex items-center flex-shrink-0 text-white mr-6">
-          <img className="h-12 w-auto mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" />
+      <nav className="flex items-center justify-between flex-wrap bg-gray-200 p-6">
+        <div className="flex items-center flex-shrink-0 text-gray-700 mr-6">
+          <img className="h-12 w-auto mr-4 rounded-full" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" />
           <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
           <div className="text-sm lg:flex-grow"></div>
-          <div className="mr-4 flex items-center bg-gray-800 rounded-lg p-2 cursor-pointer" onClick={() => setModalIsOpen(true)}>
-            <img src="./src/assets/User.jpeg" alt="Profile Icon" className="w-8 h-8 rounded-full mr-2" />
-            <span className="ml-2 text-lg font-semibold text-white">{userData.nombre}</span>
+          <div className="flex items-center text-gray-700">
+            {/* Div para el nombre del usuario */}
+            <div className="mr-4 flex items-center bg-gray-800 rounded-lg p-2 cursor-pointer" onClick={() => setModalIsOpen(true)}>
+              <img src="./src/assets/User.jpeg" alt="Profile Icon" className="w-8 h-8 rounded-full mr-2" /> {/* Icono de perfil */}
+              <span className="ml-2 text-lg font-semibold text-white">{userData.nombre}</span> {/* Nombre del usuario */}
+            </div>
           </div>
         </div>
       </nav>

@@ -1,36 +1,29 @@
-// AgregarCitaForm.tsx
 import React, { useState } from 'react';
-import { AgregarCitaFormProps, Cita, Sucursal, TipoCita } from '../../Types/Types';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { AgregarCitaFormProps, Cita, FormValues } from '../../Types/Types';
 import { agregarCita } from '../../Services/ApiCita';
 import useAddCita from '../../Hooks/useAddCita';
 
-
 const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
+  const { tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales } = useAddCita();
 
-  const {tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales} = useAddCita();
-
-  const [fechaHora, setFechaHora] = useState('');
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-  
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const newCita: Cita = {
       citaId: 0,
-      fechaHora: new Date(fechaHora),
+      fechaHora: new Date(data.fechaHora),
       status: 'ACTIVA',
-      tipoCitaId: tipoCitaId,
-      sucursalId: sucursalId
+      tipoCitaId: data.tipoCitaId,
+      sucursalId: data.sucursalId
     };
-  
+
     try {
       await agregarCita(newCita, userId);
       setSuccess('Cita agregada exitosamente');
       setError(null);
-      
-      // Recargar la página después de agregar la cita
       window.location.reload();
     } catch (err: any) {
       setError('Error al agregar la cita');
@@ -39,26 +32,25 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-4 shadow-md rounded-lg">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-4 shadow-md rounded-lg">
       <h2 className="text-xl font-bold mb-4">Agregar Cita</h2>
       {success && <p className="text-green-500">{success}</p>}
+      
       <div className="mb-4">
         <label className="block text-gray-700">Fecha y Hora:</label>
         <input
           type="datetime-local"
-          value={fechaHora}
-          onChange={(e) => setFechaHora(e.target.value)}
+          {...register('fechaHora', { required: 'Este campo es obligatorio' })}
           className="w-full px-3 py-2 border rounded"
-          required
         />
+        {errors.fechaHora && <p className="text-red-500">{errors.fechaHora.message}</p>}
       </div>
+      
       <div className="mb-4">
         <label className="block text-gray-700">Tipo de Cita:</label>
         <select
-          value={tipoCitaId}
-          onChange={(e) => setTipoCitaId(Number(e.target.value))}
+          {...register('tipoCitaId', { required: 'Este campo es obligatorio' })}
           className="w-full px-3 py-2 border rounded"
-          required
         >
           <option value="">Seleccione un tipo de cita</option>
           {tiposCita.map((tipo) => (
@@ -67,14 +59,14 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
             </option>
           ))}
         </select>
+        {errors.tipoCitaId && <p className="text-red-500">{errors.tipoCitaId.message}</p>}
       </div>
+      
       <div className="mb-4">
         <label className="block text-gray-700">Sucursal:</label>
         <select
-          value={sucursalId}
-          onChange={(e) => setSucursalId(Number(e.target.value))}
+          {...register('sucursalId', { required: 'Este campo es obligatorio' })}
           className="w-full px-3 py-2 border rounded"
-          required
         >
           <option value="">Seleccione una sucursal</option>
           {sucursales.map((sucursal) => (
@@ -83,8 +75,10 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
             </option>
           ))}
         </select>
-        {error && <p className="text-red-500">{error}</p>}
+        {errors.sucursalId && <p className="text-red-500">{errors.sucursalId.message}</p>}
+        {error && <p className="text-red-500">{error}: No se pueden agendar 2 citas el mismo dia</p>}
       </div>
+      
       <button
         type="submit"
         className="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"

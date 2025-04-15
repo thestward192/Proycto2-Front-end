@@ -1,4 +1,3 @@
-import { Link, useNavigate } from 'react-router-dom';
 import { useCita } from '../../Hooks/UseCita';
 import useAdmin from '../../Hooks/useAdmin';
 import UseUser from '../../Hooks/UseUser';
@@ -7,10 +6,11 @@ import CustomModalAdmin from './modalAdmin';
 import { format } from 'date-fns';
 
 const AdminPage = () => {
-  const { citas } = useAdmin();
+  const { citas }: { citas: { userName: string; fechaHora: string; status: string; tipoCitaNombre: string; sucursalNombre: string; citaId: number }[] } = useAdmin();
   const { handleDeleteCita } = useCita();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { userData } = UseUser();
+  const { nombre, email, telefono } = UseUser();
+  const userData = { nombre, email, telefono };
 
   return (
     <div className="w-full h-screen flex flex-col">

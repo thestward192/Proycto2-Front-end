@@ -1,15 +1,22 @@
 import  { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { getSucursalId, getTipoCitaId, loginUser, registerUser } from '../Services/ApiEntities';
-import { jwtDecode } from 'jwt-decode';
-import { RegisterFormInputs } from '../Types/Types';
+import {  loginUser, registerUser } from '../Services/ApiEntities';
+import {jwtDecode} from 'jwt-decode';
+
+interface ExtendedJwtPayload {
+  Id: string;
+  Email: string;
+  Telefono: string;
+  Nombre: string;
+  RoleId: string;
+}
 
 const UseUser = () => {
   const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [userData, setUserData] = useState({});
-    const [citas, setCitas] = useState([]);
+    const [citas] = useState([]);
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');
     const Navigate = useNavigate();
@@ -23,12 +30,11 @@ const UseUser = () => {
             setMessage('Login exitoso');
             Navigate('/home')
         } catch (error) {
-            setMessage(error.message);
+            setMessage(message);
         }
     };
 
     const handleCancel = () => {
-      Navigate('/')
     };
 
     
@@ -36,7 +42,7 @@ const UseUser = () => {
         const token = localStorage.getItem('token');
         if (token) {
             try {
-                const decodedToken = jwtDecode(token);
+                const decodedToken = jwtDecode<ExtendedJwtPayload>(token);
                 setUserData({
                     id: decodedToken.Id,
                     email: decodedToken.Email,
@@ -60,7 +66,7 @@ const UseUser = () => {
             setMessage(responseMessage);
             Navigate('/login')
         } catch (error) {
-            setMessage(error.message);
+            setMessage(message);
         }
     }
     

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import AgregarCitaForm from '../ComponentsCita/AgregarCita';
 import CitaList from '../ComponentsCita/CitaList';
 import UseUser from '../../Hooks/UseUser';
@@ -8,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
-  const { userData } = UseUser();
+  const { nombre, email, telefono }: { nombre: string; email: string; telefono: string } = UseUser();
   // Estado para controlar si el modal está abierto o cerrado
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -25,7 +24,7 @@ const Home = () => {
             {/* Div para el nombre del usuario */}
             <div className="mr-4 flex items-center bg-gray-800 rounded-lg p-2 cursor-pointer" onClick={() => setModalIsOpen(true)}>
               <img src="./src/assets/User.jpeg" alt="Profile Icon" className="w-8 h-8 rounded-full mr-2" /> {/* Icono de perfil */}
-              <span className="ml-2 text-lg font-semibold text-white">{userData.nombre}</span> {/* Nombre del usuario */}
+              <span className="ml-2 text-lg font-semibold text-white">{nombre}</span> {/* Nombre del usuario */}
             </div>
           </div>
         </div>
@@ -36,16 +35,16 @@ const Home = () => {
           <div className="flex">
            <CitaList/>
             <div className="w-1/4 p-4 min-w-[450px]">
-              <AgregarCitaForm userId={userData.id} />
+              <AgregarCitaForm userId={parseInt(nombre, 10)} />
             </div>
           </div>
           {/* Modal personalizado */}
           <CustomModal
             isOpen={modalIsOpen}
             onClose={() => setModalIsOpen(false)}
-            nombre={userData.nombre}
-            email={userData.email}
-            telefono={userData.telefono}
+            nombre={nombre}
+            email={email}
+            telefono={telefono}
           />
         </div>
       </div>

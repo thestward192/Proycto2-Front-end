@@ -1,5 +1,5 @@
 
-import { Role, Sucursal, TipoCita, User } from "../Types/Types";
+import { Role, Sucursal, TipoCita } from "../Types/Types";
 
 export const getSucursales = async (): Promise<Sucursal[]> => {
   const response = await fetch('https://localhost:7080/api/Sucursal');

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 export interface Role {
   roleId: number;
@@ -58,6 +58,9 @@ export interface ProtectedRouteProps {
 }
 
 export interface CitaM {
+  sucursalNombre: ReactNode;
+  tipoCitaNombre: ReactNode;
+  status: ReactNode;
   citaId: number;
   fechaHora: string;
   userId: number;

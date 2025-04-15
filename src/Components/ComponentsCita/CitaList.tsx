@@ -6,7 +6,18 @@ import ModificarCitaForm from './ModificarCitaForm'; // Importa el componente de
 import { CitaM } from '../../Types/Types';
 
 const CitaList = () => {
-    const { citas, loading, closeModal, handleCancelarCita, modalIsOpen, message, handleDeleteCita, errorMessage, errorModalIsOpen, setErrorModalIsOpen } = useCita();
+    const { citas, loading, closeModal, handleCancelarCita, modalIsOpen, message, handleDeleteCita, errorMessage, errorModalIsOpen, setErrorModalIsOpen } = useCita() as unknown as {
+        citas: CitaM[];
+        loading: boolean;
+        closeModal: () => void;
+        handleCancelarCita: (citaId: number) => void;
+        modalIsOpen: boolean;
+        message: string;
+        handleDeleteCita: (citaId: number) => void;
+        errorMessage: string;
+        errorModalIsOpen: boolean;
+        setErrorModalIsOpen: (isOpen: boolean) => void;
+    };
     const [selectedCita, setSelectedCita] = useState<CitaM | null>(null); // Estado para almacenar la cita seleccionada para modificar
 
     // Función para manejar la selección de una cita para modificar

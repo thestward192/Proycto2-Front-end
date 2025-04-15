@@ -1,11 +1,11 @@
 import {  useEffect, useState } from 'react';
-import {  agregarCita, cancelarCita, eliminarCita, getCitas, obtenerCitasPorUsuario } from '../Services/ApiCita';
+import {  cancelarCita, eliminarCita, getCitas, obtenerCitasPorUsuario } from '../Services/ApiCita';
 import UseUser from './UseUser';
 
 export const useCita = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [citas, setCitas] = useState([]);
+  const [citas, setCitas] = useState<{ citaId: any }[]>([]);
   const [message, setMessage] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [editModalIsOpen, setEditModalIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export const useCita = () => {
   const {userData} = UseUser();
 
   useEffect(() => {
-      if (userData && userData.id) {
+      if (userData?.id) {
           const fetchCitas = async () => {
               try {
                   const data = await obtenerCitasPorUsuario(userData.id);
@@ -69,6 +69,8 @@ export const useCita = () => {
     }
   };
 
+console.log('citas', editModalIsOpen);
+
   const handleEditCita = (cita : any) => {
     setSelectedCita(cita);
     setEditModalIsOpen(true);
@@ -81,7 +83,7 @@ const handleDeleteCita = async (citaId: any) => {
       console.log("Cita eliminada correctamente");
       window.location.reload();
   } catch (error) {
-      setErrorMessage(error.message || 'Error al eliminar la cita');
+      setErrorMessage(message || 'Error al eliminar la cita');
       setErrorModalIsOpen(true);
   }
 };

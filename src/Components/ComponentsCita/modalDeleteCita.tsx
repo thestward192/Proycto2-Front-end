@@ -2,7 +2,13 @@
 
 import React from 'react';
 
-const ErrorModal = ({ isOpen, onRequestClose, errorMessage }) => {
+interface ErrorModalProps {
+    isOpen: boolean;
+    onRequestClose: () => void;
+    errorMessage: string;
+}
+
+const ErrorModal: React.FC<ErrorModalProps> = ({ isOpen, onRequestClose, errorMessage }) => {
     return (
         <div className={`fixed top-0 left-0 w-full h-full flex items-center justify-center ${isOpen ? '' : 'hidden'}`}>
             <div className="absolute w-full h-full bg-gray-900 opacity-50" onClick={onRequestClose}></div>

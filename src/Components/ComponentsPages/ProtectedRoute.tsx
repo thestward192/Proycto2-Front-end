@@ -5,13 +5,12 @@ import { jwtDecode } from 'jwt-decode';
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ element, allowedRoles }) => {
     const token = localStorage.getItem('token');
-    let isAuthorized = false;
-    let userRoleId = null;
+    let userRoleId: number | null = null;
 
     if (token) {
         try {
             const decodedToken: any = jwtDecode(token);
-                        isAuthorized = !!decodedToken;
+            // Aquí asignamos userRoleId, no necesitamos isAuthorized ya que no se utiliza en la lógica
             userRoleId = decodedToken.RoleId;
         } catch (error) {
             console.error('Error al decodificar el token:', error);

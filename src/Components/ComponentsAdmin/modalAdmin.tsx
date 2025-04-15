@@ -1,8 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import UseUser from '../../Hooks/UseUser';
 
-const CustomModalAdmin = ({ isOpen, onClose, nombre, email, telefono }) => {
+interface CustomModalAdminProps {
+    isOpen: boolean;
+    onClose: () => void;
+    nombre: string;
+    email: string;
+    telefono: string;
+}
+
+const CustomModalAdmin: React.FC<CustomModalAdminProps> = ({ isOpen, onClose, nombre, email, telefono }) => {
     const Navigate = useNavigate();
     const handleCloseModal = () => {
         onClose();

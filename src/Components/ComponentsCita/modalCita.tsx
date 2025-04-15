@@ -22,9 +22,15 @@ const customStyles = {
     }
 };
 
-const ModalComponent = ({ modalIsOpen, closeModal, message }) => {
+interface ModalComponentProps {
+    modalIsOpen: boolean;
+    closeModal: () => void;
+    message: string;
+}
+
+const ModalComponent: React.FC<ModalComponentProps> = ({ modalIsOpen, closeModal, message }) => {
     // Usamos useRef para mantener una referencia al estado previo del modal
-    const prevModalIsOpen = useRef();
+    const prevModalIsOpen = useRef<boolean | null>(null);
 
     // Cuando el modal se cierra, y su estado previo era abierto, recargamos la página
     useEffect(() => {

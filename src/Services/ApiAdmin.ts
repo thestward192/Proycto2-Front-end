@@ -21,7 +21,8 @@ export const fetchCitasPorFecha = async (fecha : any) => {
       return data;
     } catch (error) {
       // Capturar cualquier error y lanzarlo nuevamente para que pueda ser manejado en el componente que llama a esta función
-      throw new Error(`Error al obtener citas por fecha: ${error.message}`);
+      const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+      throw new Error(`Error al obtener citas por fecha: ${errorMessage}`);
     }
   };
   

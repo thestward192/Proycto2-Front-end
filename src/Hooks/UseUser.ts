@@ -11,11 +11,19 @@ interface ExtendedJwtPayload {
   RoleId: string;
 }
 
+interface UserData {
+    id: string;
+    email: string;
+    telefono: string;
+    nombre: string;
+    roleId: string; // Agrega el roleId aquí
+}
+
 const UseUser = () => {
   const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
-    const [userData, setUserData] = useState({});
+    const [userData, setUserData] = useState<UserData | null>(null);
     const [citas] = useState([]);
     const [nombre, setNombre] = useState('');
     const [telefono, setTelefono] = useState('');

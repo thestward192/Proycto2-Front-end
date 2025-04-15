@@ -5,7 +5,7 @@ import { agregarCita } from '../../Services/ApiCita';
 import useAddCita from '../../Hooks/useAddCita';
 
 const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
-  const { tipoCitaId, setTipoCitaId, sucursalId, setSucursalId, tiposCita, sucursales } = useAddCita();
+  const { tiposCita, sucursales } = useAddCita();
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
   const [error, setError] = useState<string | null>(null);
@@ -14,10 +14,13 @@ const AgregarCitaForm: React.FC<AgregarCitaFormProps> = ({ userId }) => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     const newCita: Cita = {
       citaId: 0,
-      fechaHora: new Date(data.fechaHora),
+      fechaHora: new Date(data.fechaHora).toISOString(),
       status: 'ACTIVA',
       tipoCitaId: data.tipoCitaId,
-      sucursalId: data.sucursalId
+      sucursalId: data.sucursalId,
+      userId: 0,
+      tipoCitaNombre: '',
+      sucursalNombre: ''
     };
 
     try {

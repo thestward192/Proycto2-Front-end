@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { fetchCitasPorFecha } from '../Services/ApiAdmin';
 
 const useAdmin = () => {
@@ -15,7 +15,7 @@ const useAdmin = () => {
           console.log(citas)
         } catch (error) {
           // Manejar cualquier error que ocurra durante la obtención de las citas
-          console.error(error.message);
+          console.error();
         }
       };
   

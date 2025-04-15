@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Sucursal, TipoCita } from '../Types/Types';
 
 const useEditCita = () => {

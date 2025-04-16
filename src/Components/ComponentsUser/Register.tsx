@@ -12,7 +12,7 @@ const RegisterForm = () => {
     <>
      <nav className="flex items-center justify-between flex-wrap bg-gray-200 p-6">
       <div className="flex items-center flex-shrink-0 text-gray-700 mr-6">
-        <img className="h-12 w-12 rounded-full mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" /> {/* Aquí se muestra la imagen del logo */}
+        <img className="h-12 w-12 rounded-full mr-4" src={logoClinica} alt="Clinica San Martin Logo" /> {/* Aquí se muestra la imagen del logo */}
         <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">

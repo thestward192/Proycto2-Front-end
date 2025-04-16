@@ -10,13 +10,13 @@ const useEditCita = () => {
 
     useEffect(() => {
         const fetchTiposCita = async () => {
-          const response = await fetch('https://localhost:7080/api/TipoCita');
+          const response = await fetch('https://chocoproyecto-ii.onrender.com/api/TipoCita');
           const data = await response.json();
           setTiposCita(data);
         };
     
         const fetchSucursales = async () => {
-          const response = await fetch('https://localhost:7080/api/Sucursal');
+          const response = await fetch('https://chocoproyecto-ii.onrender.com/api/Sucursal');
           const data = await response.json();
           setSucursales(data);
         };

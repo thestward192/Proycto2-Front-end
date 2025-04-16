@@ -2,18 +2,20 @@
 import { Role, Sucursal, TipoCita } from "../Types/Types";
 
 export const getSucursales = async (): Promise<Sucursal[]> => {
-  const response = await fetch('https://localhost:7080/api/Sucursal');
+  const response = await fetch('https://chocoproyecto-ii.onrender.com/api/Sucursal');
   if (!response.ok) {
     throw new Error('Error fetching sucursales');
   }
   return response.json();
 };
 
+//https://chocoproyecto-ii.onrender.com
+
 // Simulación de una función que realiza una solicitud HTTP para obtener los detalles de un tipo de cita por su ID
 export const getTipoCitaId = async (tipoCitaId: number): Promise<TipoCita | null> => {
   try {
     // Realiza la solicitud HTTP al backend para obtener los detalles del tipo de cita con el ID proporcionado
-    const response = await fetch(`https://localhost:7080/api/TipoCita/${tipoCitaId}`); // Ajusta la URL según tu backend
+    const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/TipoCita/${tipoCitaId}`); // Ajusta la URL según tu backend
     if (!response.ok) {
       throw new Error('Error al obtener los detalles del tipo de cita');
     }
@@ -29,7 +31,7 @@ export const getTipoCitaId = async (tipoCitaId: number): Promise<TipoCita | null
 export const getSucursalId = async (sucursalId: number): Promise<Sucursal | null> => {
   try {
     // Realiza la solicitud HTTP al backend para obtener los detalles de la sucursal con el ID proporcionado
-    const response = await fetch(`https://localhost:7080/api/Sucursal/${sucursalId}`); // Ajusta la URL según tu backend
+    const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Sucursal/${sucursalId}`); // Ajusta la URL según tu backend
     if (!response.ok) {
       throw new Error('Error al obtener los detalles de la sucursal');
     }
@@ -43,7 +45,7 @@ export const getSucursalId = async (sucursalId: number): Promise<Sucursal | null
 
 
 export const getRoles = async (): Promise<Role[]> => {
-  const response = await fetch('https://localhost:7080/api/Role');
+  const response = await fetch('https://chocoproyecto-ii.onrender.com/api/Role');
   if (!response.ok) {
     throw new Error('Error fetching roles');
   }
@@ -51,7 +53,7 @@ export const getRoles = async (): Promise<Role[]> => {
 };
 
 export const getTiposCita = async (): Promise<TipoCita[]> => {
-  const response = await fetch('https://localhost:7080/api/TipoCita');
+  const response = await fetch('https://chocoproyecto-ii.onrender.com/api/TipoCita');
   if (!response.ok) {
     throw new Error('Error fetching tiposCita');
   }
@@ -60,7 +62,7 @@ export const getTiposCita = async (): Promise<TipoCita[]> => {
 
 export const registerUser = async (userData: { nombre: string; email: string; telefono: string; password: string }) => {
   try {
-      const response = await fetch('https://localhost:7080/api/User/register', {
+      const response = await fetch('https://chocoproyecto-ii.onrender.com/api/User/register', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json'
@@ -84,7 +86,7 @@ export const registerUser = async (userData: { nombre: string; email: string; te
 
 export const loginUser = async (userData: { email: string; password: string }) => {
   try {
-    const response = await fetch('https://localhost:7080/api/User/login', {
+    const response = await fetch('https://chocoproyecto-ii.onrender.com/api/User/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

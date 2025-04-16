@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -50,13 +51,13 @@ const LandingPage = () => {
           <a href="#servicios" className="text-gray-900 font-bold hover:text-gray-400" onClick={handleScrollToServices}>Servicios</a> {/* Cambiamos el texto a "Servicios" */}
           <a href="#doctores" className="text-gray-900 font-bold hover:text-gray-400" onClick={handleScrollToDoc}>Doctores</a> {/* Agregamos el enlace para la sección de Doctores */}
           <button type="button" className="text-gray-900 font-bold bg-gray-400 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-            <a href="/login">Agregar cita</a>
+            <Link to="/login">Agregar cita</Link>
             <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
           </button>
           <button type="button" className="text-gray-900 font-bold bg-green-400 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-            <a href="/register">Registrarse</a>
+           <Link to="/register">Registrase</Link>
           </button>
         </nav>
       </header>

@@ -104,32 +104,32 @@ const LandingPage = () => {
           <h2 className="text-3xl font-bold mb-8 text-center">Nuestros Doctores</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-              <img src="./src/assets/Doctores/WhatsApp Image 2024-06-08 at 12.45.15 AM.jpeg" alt="Stward Serrano" className="w-full rounded-md mb-4" />
+              <img src="https://i.ibb.co/ymCTffnP/Whats-App-Image-2025-04-15-at-10-21-03-PM.jpg" alt="Stward Serrano" className="w-full rounded-md mb-4" />
               <h3 className="text-gray-700 font-bold">Stward Serrano</h3>
               <p className="text-gray-500 break-line">Especialista en Medicina General</p>
             </div>
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-              <img src="./src/assets/Doctores/WhatsApp Image 2024-06-08 at 1.04.50 AM.jpeg" alt="Hezron Araya" className="w-full rounded-md mb-4" />
+              <img src="https://i.ibb.co/8LZ0XLyj/Whats-App-Image-2025-04-15-at-10-21-04-PM-1.jpg" alt="Hezron Araya" className="w-full rounded-md mb-4" />
               <h3 className="text-gray-700 font-bold">Hezron Araya</h3>
               <p className="text-gray-500 break-line">Especialista en Odontología</p>
             </div>
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-              <img src="./src/assets/Doctores/WhatsApp Image 2024-06-07 at 11.46.23 PM.jpeg" alt="Fabiola Carrera" className="w-full rounded-md mb-4" />
+              <img src="https://i.ibb.co/v6CnhFqk/Whats-App-Image-2025-04-15-at-10-21-04-PM.jpg" alt="Fabiola Carrera" className="w-full rounded-md mb-4" />
               <h3 className="text-gray-700 font-bold">Fabiola Carrera</h3>
               <p className="text-gray-500 break-line">Pediatra</p>
             </div>
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-              <img src="./src/assets/Doctores/WhatsApp Image 2024-06-08 at 12.54.43 AM.jpeg" alt="Oscar Sanchez" className="w-full rounded-md mb-4" />
+              <img src="https://i.ibb.co/YFYF8pVg/Whats-App-Image-2025-04-15-at-10-21-03-PM-1.jpg" alt="Oscar Sanchez" className="w-full rounded-md mb-4" />
               <h3 className="text-gray-700 font-bold">Oscar Sanchez</h3>
               <p className="text-gray-500 break-line">Especialista en Cirugía</p>
             </div>
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-              <img src="./src/assets/Doctores/WhatsApp Image 2024-06-08 at 1.07.01 AM.jpeg" alt="Robert Cascante" className="w-full rounded-md mb-4" />
+              <img src="https://i.ibb.co/mCjxVhkp/Whats-App-Image-2025-04-15-at-10-21-04-PM-2.jpg" alt="Robert Cascante" className="w-full rounded-md mb-4" />
               <h3 className="text-gray-700 font-bold">Robert Cascante</h3>
               <p className="text-gray-500 break-line">Neurólogo</p>
             </div>
             <div className="card bg-gray-300 rounded-md shadow-md p-4 flex flex-col items-center">
-  <img src="./src/assets/Doctores/WhatsApp Image 2024-06-08 at 1.10.11 AM.jpeg" alt="Lawrens Fowks" className="w-full rounded-md mb-4" />
+  <img src="https://i.ibb.co/8DMWQx82/Whats-App-Image-2025-04-15-at-10-21-02-PM.jpg" alt="Lawrens Fowks" className="w-full rounded-md mb-4" />
   <h3 className="text-gray-700 font-bold">Lawrence Fowks</h3>
   <p className="text-gray-500 break-line">Especialista en Full Stack</p>
 </div>

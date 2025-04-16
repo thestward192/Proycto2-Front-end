@@ -5,9 +5,9 @@ import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg
 const LandingPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
-    "./src/assets/vecteezy_success-smart-medical-doctor-working-with-operating-room-as_5320098.jpg",
-    "./src/assets/vecteezy_healthcare-professional-holding-a-stethoscope_2133122.jpg",
-    "./src/assets/vecteezy_banner-background-of-professional-surgical-doctor-team-are_6832219.jpg"
+    "https://i.ibb.co/d4y8sRFS/Whats-App-Image-2025-04-15-at-10-13-29-PM-1.jpg",
+    "https://i.ibb.co/BkBH0Hm/Whats-App-Image-2025-04-15-at-10-13-31-PM.jpg",
+    "https://i.ibb.co/wFLgj5jr/Whats-App-Image-2025-04-15-at-10-13-29-PM.jpg"
   ]; // Rutas de las imágenes
   const carouselInterval = 2000; // Intervalo de cambio de imagen en milisegundos
 

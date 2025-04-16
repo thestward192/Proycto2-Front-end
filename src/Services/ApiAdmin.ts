@@ -3,7 +3,8 @@
 export const fetchCitasPorFecha = async (fecha : any) => {
     try {
       // Construir la URL con la fecha como parámetro de consulta
-      const url = `https://localhost:7080/api/Cita/fecha?fecha=${fecha}`;
+      const url = `https://chocoproyecto-ii.onrender.com/api/Cita/fecha?fecha=${fecha}`;
+      //https://chocoproyecto-ii.onrender.com
     
       // Realizar la solicitud al endpoint
       const response = await fetch(url);

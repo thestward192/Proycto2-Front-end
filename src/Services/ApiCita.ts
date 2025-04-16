@@ -1,6 +1,7 @@
 import { Cita, CitaM } from "../Types/Types";
 
-const API_URL = 'https://localhost:7080/api/Cita';
+const API_URL = 'https://chocoproyecto-ii.onrender.com/api/Cita';
+//https://chocoproyecto-ii.onrender.com
 
 export const getCitas = async (): Promise<Cita[]> => {
   const response = await fetch(API_URL);
@@ -11,7 +12,7 @@ export const getCitas = async (): Promise<Cita[]> => {
 };
 
 export const obtenerCitasPorUsuario = async (userId : any) => {
-  const response = await fetch(`https://localhost:7080/api/Cita/user/${userId}`);
+  const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Cita/user/${userId}`);
   if (!response.ok) {
       throw new Error('Failed to fetch citas');
   }
@@ -21,7 +22,7 @@ export const obtenerCitasPorUsuario = async (userId : any) => {
 // ApiCita.ts
 export const agregarCita = async (cita: any, userId: number) => {
   try {
-    const response = await fetch(`https://localhost:7080/api/Cita`, {
+    const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Cita`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ export const agregarCita = async (cita: any, userId: number) => {
 
 // Services/ApiCita.ts
 export const cancelarCita = async (citaId : any) => {
-  const response = await fetch(`https://localhost:7080/api/Cita/cancelar/${citaId}`, {
+  const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Cita/cancelar/${citaId}`, {
     method: 'PATCH',
   });
 
@@ -66,7 +67,7 @@ export const cancelarCita = async (citaId : any) => {
 export const modificarCita = async (cita: CitaM): Promise<void> => {
 const token = localStorage.getItem('token'); // Obtén el token del almacenamiento local o de donde lo tengas guardado
 try {
-  const response = await fetch(`https://localhost:7080/api/Cita/${cita.citaId}`, {
+  const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Cita/${cita.citaId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -94,7 +95,7 @@ export const eliminarCita = async (citaId: number) => {
       throw new Error('Token de autenticación no encontrado');
     }
 
-    const response = await fetch(`https://localhost:7080/api/Cita/${citaId}`, {
+    const response = await fetch(`https://chocoproyecto-ii.onrender.com/api/Cita/${citaId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

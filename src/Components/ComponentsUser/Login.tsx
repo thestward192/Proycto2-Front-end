@@ -3,6 +3,7 @@ import UseUser from '../../Hooks/UseUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import logoClinica from '../../assets/logo_clinica.jpg'; 
+import backgroundIMage from '../../assets/vecteezy_healthcare-professional-holding-a-stethoscope_2133122.jpg'; // Asegúrate de que la ruta sea correcta
 
 const Login = () => {
   const { email, setEmail, setPassword, message, password, handleLogin, handleCancel } = UseUser();
@@ -31,12 +32,12 @@ const Login = () => {
           <Link to='/register' className="text-blue-500"> registrarte aquí.</Link>
         </p>
       </div>
-      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(./src/assets/vecteezy_success-smart-medical-doctor-working-with-operating-room-as_5320098.jpg)' }}>
+      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundIMage})` }}>
         <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay oscuro */}
         <div className="relative flex items-center justify-center min-h-screen">
           <div className="max-w-md mx-auto p-4 border rounded shadow-md bg-white bg-opacity-90">
             <div className="flex flex-col items-center mb-4 ">
-              <img className="h-24 w-24 rounded-full mb-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" />
+              <img className="h-24 w-24 rounded-full mb-4" src={logoClinica} alt="Clinica San Martin Logo" />
               <h1 className="text-2xl font-semibold text-gray-700 " >Iniciar Sesión</h1>
             </div>
             <form onSubmit={handleLogin}>

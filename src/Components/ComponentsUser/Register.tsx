@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import logoClinica from '../../assets/logo_clinica.jpg'; 
 import { Link } from 'react-router-dom';
+import backgroundIMage from '../../assets/vecteezy_healthcare-professional-holding-a-stethoscope_2133122.jpg'; // Asegúrate de que la ruta sea correcta
 
 const RegisterForm = () => {
   const { handleRegister, nombre, telefono, email, password, message, setEmail, setPassword, setNombre, setTelefono, handleCancel } = UseUser();
@@ -26,7 +27,7 @@ const RegisterForm = () => {
         </Link>
       </div>
     </nav>
-      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(./src/assets/vecteezy_healthcare-professional-holding-a-stethoscope_2133122.jpg)' }}>
+      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundIMage})` }}>
         <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay oscuro */}
         <div className="relative flex items-center justify-center min-h-screen">
           <div className="max-w-3xl mx-auto p-6 border rounded shadow-md bg-white bg-opacity-90"> {/* Ancho máximo del card ajustado */}

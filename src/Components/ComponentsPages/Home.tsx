@@ -15,7 +15,7 @@ const Home = () => {
     <>
       <nav className="flex items-center justify-between flex-wrap bg-gray-200 p-6">
         <div className="flex items-center flex-shrink-0 text-gray-700 mr-6">
-          <img className="h-12 w-auto mr-4 rounded-full" src="https://i.ibb.co/V6dbg5d/Whats-App-Image-2025-04-15-at-10-28-26-PM.jpg" alt="Clinica San Martin Logo" />
+          <img className="h-12 w-auto mr-4 rounded-full" src="https://i.ibb.co/V6dbg5d/Whats-App-Image-2025-04-15-at-10-28-26-PM.jpg" alt="" />
           <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import UseUser from '../../Hooks/UseUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
+import logoClinica from '../../assets/logo_clinica.jpg'; 
 
 const Login = () => {
   const { email, setEmail, setPassword, message, password, handleLogin, handleCancel } = UseUser();
@@ -10,7 +11,7 @@ const Login = () => {
     <>
       <nav className="flex items-center justify-between flex-wrap bg-gray-200 p-6">
         <div className="flex items-center flex-shrink-0 text-gray-700 mr-6">
-          <img className="h-12 w-12 rounded-full mr-4" src="./src/assets/logo_clinica.jpg" alt="Clinica San Martin Logo" />
+          <img className="h-12 w-12 rounded-full mr-4" src={logoClinica} alt="Clinica San Martin Logo" />
           <span className="font-semibold text-xl tracking-tight">Choco Clinica</span>
         </div>
         <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">

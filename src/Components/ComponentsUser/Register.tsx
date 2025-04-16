@@ -1,7 +1,7 @@
 import UseUser from '../../Hooks/UseUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
-import logoClinica from '../../assets/logo_clinica.jpg'; // Importa la imagen del logo
+import logoClinica from '../../assets/logo_clinica.jpg'; 
 import { Link } from 'react-router-dom';
 
 const RegisterForm = () => {

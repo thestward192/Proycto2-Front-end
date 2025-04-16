@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import logoClinica from '../../assets/logo_clinica.jpg'; 
 
 const LandingPage = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -44,7 +45,7 @@ const LandingPage = () => {
     <div className="relative">
       <header className="absolute top-0 left-0 right-0 z-50 bg-gray-200 py-8 px-8 rounded-lg shadow-md flex items-center justify-between">
         <div className="flex items-center">
-          <img src="./src/assets/logo_clinica.jpg" alt="Clinica Logo" className="w-12 h-12 rounded-full mr-4" /> {/* Agregamos la imagen del logo */}
+          <img src={logoClinica} alt="Clinica Logo" className="w-12 h-12 rounded-full mr-4" /> {/* Agregamos la imagen del logo */}
           <h1 className="text-3xl font-bold text-gray-900">Choco Clinica</h1>
         </div>
         <nav className="flex space-x-8">

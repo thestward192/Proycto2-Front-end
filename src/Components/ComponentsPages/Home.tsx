@@ -5,6 +5,8 @@ import UseUser from '../../Hooks/UseUser';
 import CustomModal from '../ComponentsUser/modalUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
+import User from '../../assets/User.jpeg'; // Asegúrate de que la ruta sea correcta
+import backgroundImage from '../../assets/vecteezy_banner-background-of-professional-surgical-doctor-team-are_6832219.jpg'; // Asegúrate de que la ruta sea correcta
 
 const Home = () => {
   const { nombre, email, telefono }: { nombre: string; email: string; telefono: string } = UseUser();
@@ -23,13 +25,13 @@ const Home = () => {
           <div className="flex items-center text-gray-700">
             {/* Div para el nombre del usuario */}
             <div className="mr-4 flex items-center bg-gray-800 rounded-lg p-2 cursor-pointer" onClick={() => setModalIsOpen(true)}>
-              <img src="./src/assets/User.jpeg" alt="Profile Icon" className="w-8 h-8 rounded-full mr-2" /> {/* Icono de perfil */}
+              <img src={User} alt="Profile Icon" className="w-8 h-8 rounded-full mr-2" /> {/* Icono de perfil */}
               <span className="ml-2 text-lg font-semibold text-white">{nombre}</span> {/* Nombre del usuario */}
             </div>
           </div>
         </div>
       </nav>
-      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(./src/assets/vecteezy_banner-background-of-professional-surgical-doctor-team-are_6832219.jpg)' }}>
+      <div className="relative min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }}>
         <div className="absolute inset-0 bg-black opacity-50"></div> {/* Overlay oscuro */}
         <div className="flex flex-col justify-center items-center relative z-10">
           <div className="flex">
